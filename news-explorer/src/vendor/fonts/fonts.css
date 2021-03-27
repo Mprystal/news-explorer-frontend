@@ -1,0 +1,125 @@
+@font-face {
+  font-family: 'Inter';
+  src: url(./inter-400-regular.woff);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url(./inter-400-regular.woff2);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url(./inter-500.woff);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url(./inter-500.woff2);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url(./roboto-400-regular.woff);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url(./roboto-400-regular.woff2);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url(./roboto-500.woff);
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url(./roboto-500.woff2);
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url(./roboto-700.woff);
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url(./roboto-700.woff2);
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url(./roboto-900.woff);
+  font-weight: 900;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url(./roboto-900.woff2);
+  font-weight: 900;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url(./roboto-slab-400-regular.woff);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url(./roboto-slab-400-regular.woff2);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url(./roboto-slab-700.woff);
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url(./roboto-slab-700.woff2);
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}

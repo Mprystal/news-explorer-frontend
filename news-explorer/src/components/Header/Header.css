@@ -1,0 +1,43 @@
+.header {
+  height: 80px;
+  width: 1440px;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(196, 196, 196, 0.01);
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  align-items: center;
+  position: absolute;
+}
+
+.header__title {
+  color: white;
+  font-family: 'Roboto Slab', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-left: 104px;
+}
+
+.header__nav {
+  margin-right: 104px;
+}
+
+.header__nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 1.33;
+  margin-right: 42px;
+}
+
+.header__nav-button {
+  color: white;
+  background: transparent;
+  width: 176px;
+  border-radius: 100px;
+  border: 1px solid #ffffff;
+  font-size: 18px;
+  line-height: 1.33;
+  padding: 12px;
+}

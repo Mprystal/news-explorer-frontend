@@ -1,3 +1,12 @@
-.App {
+@import url(../../vendor/fonts/fonts.css);
+
+.app {
+  max-width: 1440px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  margin: 0 auto;
   text-align: center;
+  background: black;
+  display: flex;
+  flex-direction: column;
 }
