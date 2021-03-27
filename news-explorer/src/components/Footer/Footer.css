@@ -1,0 +1,35 @@
+.footer {
+  background-color: white;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 104px;
+}
+
+.footer__container {
+  display: flex;
+  font-size: 18px;
+  line-height: 1.33;
+}
+
+.footer__paragraph {
+  color: #b6bcbf;
+  font-size: 16px;
+  line-height: 1.37;
+}
+
+.footer__link-container {
+}
+
+.footer__social-container {
+}
+
+.footer__link {
+  text-decoration: none;
+  color: black;
+  margin-right: 42px;
+}
+
+.footer__link-social:first-of-type {
+  margin-right: 28px;
+}
