@@ -1,0 +1,72 @@
+.newscard {
+  width: 400px;
+  height: 576px;
+  text-align: left;
+  background-color: white;
+  border-radius: 16px;
+  overflow: hidden;
+  gap: 16px;
+  position: relative;
+}
+
+.newscard__button {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  z-index: 100;
+  right: 24px;
+  top: 24px;
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+
+.newscard__button-img {
+  align-self: center;
+}
+
+.newscard__img {
+  height: 272px;
+}
+
+.newscard__date {
+  font-size: 18px;
+  line-height: 1.33;
+  color: #b6bcbf;
+  font-family: 'Source Sans Pro';
+  margin: 20px 0 0 24px;
+}
+
+.newscard__container {
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 12px 24px 24px 24px;
+}
+
+.newscard__title {
+  font-size: 26px;
+  line-height: 1.15;
+  font-family: 'Roboto Slab';
+  font-weight: 400;
+  margin: 0;
+}
+
+.newscard__paragraph {
+  font-size: 16px;
+  line-height: 1.37;
+  margin: 0;
+}
+
+.newscard__link {
+  font-size: 16px;
+  line-height: 1.25;
+  font-family: 'Roboto Slab';
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #b6bcbf;
+  text-decoration: none;
+}

@@ -4,7 +4,7 @@ import author from '../../images/image-03author.png';
 
 function About() {
     return (
-        <div className='about'>
+        <section className='about'>
             <img className='about__img' src={author} alt='author' />
             <div className='about__container' >
                 <h2 className='about__title' >About the author</h2>
@@ -17,7 +17,7 @@ function About() {
 
             </div>
             
-        </div>
+        </section>
     )
 }
 
