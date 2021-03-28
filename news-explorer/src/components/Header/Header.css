@@ -1,6 +1,7 @@
 .header {
   height: 80px;
-  width: 1440px;
+  width: 100%;
+  max-width: 1440px;
   background: transparent;
   display: flex;
   justify-content: space-between;
@@ -8,6 +9,7 @@
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
   align-items: center;
   position: absolute;
+  z-index: 100;
 }
 
 .header__title {

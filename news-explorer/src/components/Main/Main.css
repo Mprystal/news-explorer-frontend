@@ -1,9 +1,15 @@
 .main {
-  width: 1440px;
   height: 576px;
   display: flex;
   align-items: center;
   justify-content: center;
+  left: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  position: relative;
+  right: 50%;
+  width: 100vw;
+  background-size: cover;
 }
 
 .main__container {
