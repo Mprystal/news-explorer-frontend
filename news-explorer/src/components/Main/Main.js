@@ -6,7 +6,7 @@ import NewsCardList from '../NewsCardList/NewsCardList';
 
 function Main() {
     return (
-        <main>
+        <main className="main">
             <section className='main__search-section' style={{backgroundImage:`url(${phone})`}}>
                 <div className='main__container'>
                     <h1 className='main__title'>What's going on in the world?</h1>

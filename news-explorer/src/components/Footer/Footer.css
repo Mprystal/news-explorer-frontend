@@ -3,16 +3,21 @@
   height: 80px;
   display: flex;
   justify-content: space-between;
-  margin: 0 104px;
+  width: 100%;
+  max-width: 1440px;
+  align-self: center;
+  align-items: center;
 }
 
 .footer__container {
   display: flex;
   font-size: 18px;
   line-height: 1.33;
+  margin-right: 104px;
 }
 
 .footer__paragraph {
+  margin-left: 104px;
   color: #b6bcbf;
   font-size: 16px;
   line-height: 1.37;

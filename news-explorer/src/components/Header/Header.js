@@ -5,11 +5,13 @@ import './Header.css';
 function Header() {
     return (
         <header className="header">
-            <h4 className="header__title">NewsExplorer</h4>
-            <nav className="header__nav">
-                <NavLink className="header__nav-link" exact to='/'>Home</NavLink>
-                <button className="header__nav-button">Sign in</button>
-            </nav>
+           
+                <h4 className="header__title">NewsExplorer</h4>
+                <nav className="header__nav">
+                    <NavLink className="header__nav-link" exact to='/'>Home</NavLink>
+                    <button className="header__nav-button">Sign in</button>
+                </nav>
+        
         </header>
     )
 }
