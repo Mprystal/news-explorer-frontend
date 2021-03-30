@@ -37,6 +37,11 @@
   margin-right: 42px;
 }
 
+.header__nav-link_active {
+  padding-bottom: 25px;
+  border-bottom: 3px solid white;
+}
+
 .header__nav-button {
   color: white;
   background: transparent;
@@ -50,4 +55,9 @@
 
 .header__nav-button:focus:not(:focus-visible) {
   outline: none;
+}
+
+.header__logout-img {
+  margin-left: 20px;
+  padding-top: 2px;
 }

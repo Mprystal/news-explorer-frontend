@@ -1,9 +1,11 @@
 import React from 'react';
 import './SigninForm.css';
 
-function SigninForm() {
+function SigninForm({handleFormSwitchClick, handleLoginSubmit}) {
+
+    
     return (
-        <form className="signin__form">
+        <form className="signin__form" onSubmit={handleLoginSubmit}>
             <h3 className="signin__title">Sign in</h3>
             <label className='signin__label' for='signin__email'>Email</label>
             <input
@@ -11,6 +13,7 @@ function SigninForm() {
                 className="signin__input signin__email-input"
                 type='email' 
                 placeholder="Enter email"
+                // required
             />
             <label className='signin__label' for='signin__password'>Password</label>
             <input
@@ -18,9 +21,12 @@ function SigninForm() {
                 className="signin__input signin__password-input"
                 type='password' 
                 placeholder="Enter password"
+                // required
             />
-            <button className="signin__button-signin">Sign in</button>
-            <button className="signin__button-signup">or <span className='signin__span'>Sign up</span></button>
+            <button className="signin__button-signin" type='submit'>Sign in</button>
+            <button className="signin__button-signup" onClick={handleFormSwitchClick}>
+                or <span className='signin__span'>Sign up</span>
+            </button>
         </form>
     )
 }

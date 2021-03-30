@@ -1,0 +1,14 @@
+.button__close {
+  background-color: transparent;
+  border: none;
+  align-self: flex-end;
+  margin-bottom: 15px;
+}
+
+.button__close:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.button__close-img {
+  height: 22px;
+}

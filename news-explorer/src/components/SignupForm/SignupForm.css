@@ -1,0 +1,67 @@
+.signup__form {
+  width: 430px;
+  height: 458px;
+  background-color: white;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.signup__title {
+  font-size: 24px;
+  line-height: 1.17;
+  font-weight: 900;
+  margin: 34px 0 22px 36px;
+}
+
+.signup__label {
+  color: #2f71e5;
+  font-size: 12px;
+  line-height: 1.25;
+  font-family: 'Inter';
+  font-weight: 400;
+  margin-left: 36px;
+}
+
+.signup__input {
+  width: 358px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 0 0 31px 36px;
+  padding: 9px 0 10px 5px;
+}
+
+.signup__input:focus {
+  outline: none;
+  box-shadow: 0px 0px 2px 1px #2f71e5;
+}
+
+.signup__button-signup {
+  background-color: #2f71e5;
+  height: 64px;
+  width: 360px;
+  border-radius: 100px;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
+  border: none;
+  margin: 8px 36px 16px 36px;
+}
+
+.signup__button-signin {
+  border: none;
+  background-color: white;
+}
+
+.signup__span {
+  color: #2f71e5;
+}
+
+.signup__button-signin:focus:not(:focus-visible),
+.signup__button-signup:focus:not(:focus-visible) {
+  outline: none;
+}

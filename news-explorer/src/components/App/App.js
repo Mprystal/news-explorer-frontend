@@ -8,20 +8,47 @@ import Footer from '../Footer/Footer';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 function App() {
-  const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false)
-  
-  function handleSignInPopupClick(e) {
-    setIsSignInPopupOpen(true);
+  const [loggedin, setloggedin] = useState(false);
+  const [isSigninPopupOpen, setIsSigninPopupOpen] = useState(false);
+  const [isSignupPopupOpen, setIsSignupPopupOpen] = useState(false);
+
+
+  function handleLoginSubmit(e){
+    e.preventDefault();
+    setloggedin(true);
+    closeAllPopups();
   }
 
-  function closeSignInPopup(){
-    setIsSignInPopupOpen(false);
+  function handleLogoutClick(){
+    setloggedin(false);
   }
+
+  function handleSigninPopupClick() {
+    setIsSigninPopupOpen(true);
+  }
+
+  function closeAllPopups() {
+      setIsSigninPopupOpen(false);
+      setIsSignupPopupOpen(false);    
+  }
+
+  function handleFormSwitchClick(){
+    if(isSigninPopupOpen){
+      setIsSignupPopupOpen(true);
+      setIsSigninPopupOpen(false);
+    } else if(isSignupPopupOpen){
+      setIsSigninPopupOpen(true);
+      setIsSignupPopupOpen(false);
+    } 
+  }
+
 
   return (
    <div className='app'> 
     <Header
-     handleSignInPopupClick={handleSignInPopupClick}
+     handleSigninPopupClick={handleSigninPopupClick}
+     loggedin={loggedin}
+     handleLogoutClick={handleLogoutClick}
     />
         <Switch>
           <Route exact path='/'>
@@ -36,7 +63,13 @@ function App() {
           </Route>
         </Switch>
         <Footer />
-        <PopupWithForm isSignInPopupOpen={isSignInPopupOpen} closeSignInPopup={closeSignInPopup}/>
+        <PopupWithForm 
+        isSigninPopupOpen={isSigninPopupOpen}
+        isSignupPopupOpen={isSignupPopupOpen}
+        closeAllPopups={closeAllPopups}
+        handleFormSwitchClick={handleFormSwitchClick}
+        handleLoginSubmit={handleLoginSubmit}
+        />
    </div>
   );
 }
