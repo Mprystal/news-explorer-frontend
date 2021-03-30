@@ -4,8 +4,8 @@
   text-align: left;
   background-color: white;
   border-radius: 16px;
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
 }
 
 .newscard__button {
@@ -57,6 +57,8 @@
   font-size: 16px;
   line-height: 1.37;
   margin: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .newscard__link {

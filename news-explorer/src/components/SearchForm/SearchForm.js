@@ -3,9 +3,9 @@ import './SearchForm.css';
 
 function SearchForm() {
     return (
-        <form className='form'>
-            <input className='form__input' type='text' name='searchInput' placeholder='Enter topic' />
-            <button className='form__button' type='submit'>Search</button>
+        <form className='search__form'>
+            <input className='search__input' type='text' name='searchInput' placeholder='Enter topic' />
+            <button className='search__button' type='submit'>Search</button>
         </form>
     )
 }

@@ -1,9 +1,9 @@
-.form {
+.search__form {
   position: relative;
   display: inline-block;
 }
 
-.form__input {
+.search__input {
   width: 582px;
   height: 62px;
   border-radius: 100px;
@@ -11,9 +11,15 @@
   padding: 0 0 0 24px;
   margin: 0;
   font-size: 16px;
+  box-sizing: border-box;
 }
 
-.form__button {
+.search__input:focus {
+  outline: none;
+  border: 3px solid #2f71e5;
+}
+
+.search__button {
   position: absolute;
   background-color: #2f71e5;
   color: white;
@@ -22,8 +28,12 @@
   border-radius: 100px;
   border: none;
   width: 168px;
-  height: 64px;
+  height: 62px;
   font-size: 18px;
   font-weight: 500;
   line-height: 1.33;
+}
+
+.search__button:focus:not(:focus-visible) {
+  outline: none;
 }
