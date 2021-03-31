@@ -18,24 +18,22 @@ function PopupWithForm({isSigninPopupOpen, closeAllPopups,handleFormSwitchClick,
         }
      }
     
-    function formSwap() {
-        if(isSignupPopupOpen){
-            return (<>
-                        <CloseButton closeAllPopups={closeAllPopups} />
-                        <SignupForm handleFormSwitchClick={handleFormSwitchClick} />
-                    </>)
-        } else if(isSigninPopupOpen){
-            return (<>
-                        <CloseButton closeAllPopups={closeAllPopups} />
-                        <SigninForm handleFormSwitchClick={handleFormSwitchClick} handleLoginSubmit={handleLoginSubmit} />
-                    </>)
-        }
-    }
 
     return (
         <div className={`popup ${isSigninPopupOpen && 'popup__open'} ${isSignupPopupOpen && 'popup__open'} `}>
             <div className='popup__container'>
-               {formSwap()}
+               {isSignupPopupOpen && 
+                    <>             
+                        <CloseButton closeAllPopups={closeAllPopups} />     
+                        <SignupForm handleFormSwitchClick={handleFormSwitchClick} />
+                    </>
+                }
+                {isSigninPopupOpen && 
+                    <>
+                        <CloseButton closeAllPopups={closeAllPopups} />                      
+                        <SigninForm handleFormSwitchClick={handleFormSwitchClick} handleLoginSubmit={handleLoginSubmit} />
+                    </>
+                }
             </div>
         </div>
     )

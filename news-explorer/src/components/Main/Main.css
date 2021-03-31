@@ -55,12 +55,21 @@
   height: 64px;
   border-radius: 80px;
   border: none;
-  background-color: #e8e8e8;
+  background-color: white;
   align-self: center;
   font-size: 18px;
   line-height: 1.33;
   font-weight: 500;
   margin: 64px 0 80px 0;
+}
+
+.main__button:hover {
+  background-color: #e8e8e8;
+  transition: ease-in-out 0.2s;
+}
+
+.main__button:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .main__preload-container,

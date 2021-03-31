@@ -1,6 +1,7 @@
 import React,{ useState } from 'react';
 import {Route, Switch, Redirect } from "react-router-dom";
 import './App.css';
+import Hand from '../../images/Pointerhand.png';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import About from '../About/About';
@@ -52,7 +53,7 @@ function App() {
     />
         <Switch>
           <Route exact path='/'>
-            <Main/>
+            <Main loggedin={loggedin}/>
             <About />
           </Route>
           <Route exact path='/saved-news'>

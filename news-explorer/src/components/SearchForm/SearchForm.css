@@ -34,6 +34,15 @@
   line-height: 1.33;
 }
 
+.search__button:hover {
+  background-color: #347eff;
+  transition: ease-in-out 0.2s;
+}
+
+.search__button:active {
+  background-color: #2a65cc;
+}
+
 .search__button:focus:not(:focus-visible) {
   outline: none;
 }

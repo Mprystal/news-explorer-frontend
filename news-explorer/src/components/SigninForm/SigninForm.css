@@ -58,6 +58,15 @@
   margin: 8px 36px 16px 36px;
 }
 
+.signin__button-signin:hover {
+  background-color: #347eff;
+  transition: ease-in-out 0.2s;
+}
+
+.signin__button-signin:active {
+  background-color: #2a65cc;
+}
+
 .signin__button-signup {
   border: none;
   background-color: white;

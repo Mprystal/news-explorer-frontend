@@ -25,6 +25,27 @@
   align-self: center;
 }
 
+.newscard__reminder {
+  width: 182px;
+  height: 40px;
+  background-color: white;
+  position: absolute;
+  z-index: 100;
+  right: 70px;
+  top: 24px;
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.newscard__reminder-text {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.17;
+}
+
 .newscard__img {
   height: 272px;
 }

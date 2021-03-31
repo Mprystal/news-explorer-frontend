@@ -6,11 +6,13 @@ import NewsCardList from '../NewsCardList/NewsCardList';
 import Preloader from '../Preloader/Preloader';
 import NotFound from '../NotFound/NotFound';
 
-function Main() {
+function Main({loggedin}) {
     const [search, setSearch] = useState('');
     const [natureOption, setNatureOption] = useState(false);
     const [preloadOption, setPreloadOption] = useState(false);
     const [notFoundOption, setNotFoundOption] = useState(false);
+    const [showAllCards, setShowAllCards] = useState(false);
+    const [numCardsShown, setNumCardsShown] = useState(3);
 
     function handleSearchChange(e){
         setSearch(e.target.value)
@@ -19,42 +21,25 @@ function Main() {
     function searchKeyword(text){
         if(text === 'nature'){
             setNatureOption(true)
-        } else if(text === 'searchingNews'){
+        } else if(text === 'search'){
             setNatureOption(false)
             setPreloadOption(true)
-        } 
-        setNotFoundOption(true)
+        }else if(text !== 'nature' || 'search'){
+            setNatureOption(false)
+            setPreloadOption(false)
+            setNotFoundOption(true)
+        }   
     }
 
     function handleSearchFormSubmit(e){
         e.preventDefault();
         searchKeyword(search)
+        setNumCardsShown(3)
         return
     }
 
-    function searchOptionResults(){
-        if(natureOption){
-           return ( <>
-                <h2 className='main__header'>Search results</h2>
-                <NewsCardList />
-                <button className='main__button'>Show more</button> 
-            </>)
-        } else if(preloadOption){
-            return ( <div className='main__preload-container'>
-                <Preloader /> 
-                <p className='main__preload-paragraph'>Searching for news...</p>
-            </div>)
-        } else if(notFoundOption){
-            return ( <div className='main__notfound-container'>
-                <NotFound />
-                <p className='main__notfound-paragraph'>
-                    Sorry, but nothing matched 
-                    <br/>
-                    your search terms.
-                </p>
-            </div>)
-        } return null;
-        
+    function showMoreCards(){
+        setNumCardsShown(numCardsShown + 3)
     }
 
     return (
@@ -69,9 +54,30 @@ function Main() {
                 </div> 
             </section>
 
-             
+            {/* The preloader will not go here for stage 3, so for stage-2 I put it here so we can see it functions properly. I would normaly make this section a componet and have early returns instead of nesting like this.But I dont know how stage 3 works yet, so I think this will do */}
+            
             <section className='main__search-results' >
-                {searchOptionResults()}
+                {natureOption ?
+                    <>
+                        <h2 className='main__header'>Search results</h2>
+                        <NewsCardList loggedin={loggedin} showAllCards={showAllCards} numCardsShown={numCardsShown}/>
+                        <button className='main__button' onClick={showMoreCards}>Show more</button> 
+                    </> : 
+                    preloadOption ? 
+                        <div className='main__preload-container'>
+                            <Preloader /> 
+                            <p className='main__preload-paragraph'>Searching for news...</p>
+                        </div> : 
+                        notFoundOption ?
+                            <div className='main__notfound-container'>
+                                <NotFound />
+                                <p className='main__notfound-paragraph'>
+                                    Sorry, but nothing matched 
+                                    <br/>
+                                    your search terms.
+                                </p>
+                            </div> : null
+                }
             </section>               
         </main>
     )

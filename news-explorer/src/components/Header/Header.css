@@ -25,24 +25,11 @@
   margin-left: 104px;
 }
 
-.header__nav {
+.header__container {
   margin-right: 104px;
 }
 
-.header__nav-link {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-  line-height: 1.33;
-  margin-right: 42px;
-}
-
-.header__nav-link_active {
-  padding-bottom: 25px;
-  border-bottom: 3px solid white;
-}
-
-.header__nav-button {
+.header__button {
   color: white;
   background: transparent;
   width: 176px;
@@ -53,7 +40,7 @@
   padding: 12px;
 }
 
-.header__nav-button:focus:not(:focus-visible) {
+.header__button:focus:not(:focus-visible) {
   outline: none;
 }
 

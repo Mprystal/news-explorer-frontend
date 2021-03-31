@@ -1,0 +1,12 @@
+.navigation__link {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 1.33;
+  margin-right: 42px;
+}
+
+.navigation__link_active {
+  padding-bottom: 25px;
+  border-bottom: 3px solid white;
+}

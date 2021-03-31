@@ -7,7 +7,7 @@ function SigninForm({handleFormSwitchClick, handleLoginSubmit}) {
     return (
         <form className="signin__form" onSubmit={handleLoginSubmit}>
             <h3 className="signin__title">Sign in</h3>
-            <label className='signin__label' for='signin__email'>Email</label>
+            <label className='signin__label' htmlFor='signin__email'>Email</label>
             <input
                 id='signin__email'
                 className="signin__input signin__email-input"
@@ -15,7 +15,7 @@ function SigninForm({handleFormSwitchClick, handleLoginSubmit}) {
                 placeholder="Enter email"
                 // required
             />
-            <label className='signin__label' for='signin__password'>Password</label>
+            <label className='signin__label' htmlFor='signin__password'>Password</label>
             <input
                 id='signin__password'
                 className="signin__input signin__password-input"

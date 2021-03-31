@@ -5,7 +5,7 @@ function SignupForm({handleFormSwitchClick}) {
     return (
         <form className="signup__form" >
             <h3 className="signup__title">Sign up</h3>
-            <label className='signup__label' for='signup__email'>Email</label>
+            <label className='signup__label' htmlFor='signup__email'>Email</label>
             <input
                 id='signup__email'
                 className="signup__input signup__email-input"
@@ -13,7 +13,7 @@ function SignupForm({handleFormSwitchClick}) {
                 placeholder="Enter email"
                 required
             />
-            <label className='signup__label' for='signup__password'>Password</label>
+            <label className='signup__label' htmlFor='signup__password'>Password</label>
             <input
                 id='signup__password'
                 className="signup__input signup__password-input"
@@ -21,7 +21,7 @@ function SignupForm({handleFormSwitchClick}) {
                 placeholder="Enter password"
                 required
             />
-            <label className='signup__label' for='signup__username'>Username</label>
+            <label className='signup__label' htmlFor='signup__username'>Username</label>
             <input
                 id='signup__username'
                 className="signup__input signup__username-input"
