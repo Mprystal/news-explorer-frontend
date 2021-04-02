@@ -3,7 +3,47 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  justify-content: space-between;
   margin: 0 104px;
   padding: 0;
+  align-self: center;
+}
+
+@media screen and (max-width: 1439px) {
+  .newscardlist {
+    max-width: 820px;
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .newscardlist {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 911px) {
+  .newscardlist {
+    max-width: 465px;
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .newscardlist {
+    gap: 8px;
+    margin: 0 40px;
+  }
+}
+
+@media screen and (max-width: 536px) {
+  .newscardlist {
+    max-width: 295px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .newscardlist {
+    gap: 10px;
+    margin: 0 16px;
+  }
 }

@@ -14,10 +14,11 @@
   font-size: 18px;
   line-height: 1.33;
   margin-right: 104px;
+  align-items: center;
 }
 
 .footer__paragraph {
-  margin-left: 104px;
+  margin: 0 0 0 104px;
   color: #b6bcbf;
   font-size: 16px;
   line-height: 1.37;
@@ -29,6 +30,63 @@
   margin-right: 42px;
 }
 
-.footer__link-social:first-of-type {
+.footer__social:first-of-type {
   margin-right: 28px;
+}
+
+@media screen and (max-width: 1024px) {
+  .footer {
+    height: 64px;
+  }
+
+  .footer__container {
+    margin-right: 40px;
+  }
+
+  .footer__paragraph {
+    margin-left: 40px;
+  }
+
+  .footer__link {
+    margin-right: 26px;
+  }
+
+  .footer__social:first-of-type {
+    margin-right: 26px;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .footer {
+    height: 150px;
+    flex-wrap: wrap;
+  }
+
+  .footer__paragraph {
+    margin-left: 16px;
+    margin-bottom: 15px;
+    order: 2;
+  }
+
+  .footer__container {
+    width: 100%;
+    margin-right: 17px;
+    margin-left: 16px;
+    justify-content: space-between;
+  }
+
+  .footer__link-container {
+    width: 200px;
+    text-align: left;
+  }
+
+  .footer__social-container {
+    align-self: flex-start;
+    justify-self: flex-end;
+  }
+
+  .footer__link {
+    display: block;
+    margin-bottom: 20px;
+  }
 }

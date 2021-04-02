@@ -1,12 +1,11 @@
 import React,{useState} from 'react';
 import './Main.css';
 import SearchForm from '../SearchForm/SearchForm';
-import phone from '../../images/georgia-de-lotz--UsJoNxLaNo-unsplashphone.png';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import Preloader from '../Preloader/Preloader';
 import NotFound from '../NotFound/NotFound';
 
-function Main({loggedin}) {
+function Main({loggedin, handleSigninPopupClick}) {
     const [search, setSearch] = useState('');
     const [natureOption, setNatureOption] = useState(false);
     const [preloadOption, setPreloadOption] = useState(false);
@@ -44,7 +43,7 @@ function Main({loggedin}) {
 
     return (
         <main className="main">
-            <section className='main__search-section' style={{backgroundImage:`url(${phone})`}}>
+            <section className='main__search-section'>
                 <div className='main__container'>
                     <h1 className='main__title'>What's going on in the world?</h1>
                     <p className='main__paragraph'>Find the latest news on any topic and save them in your personal account.</p>
@@ -60,7 +59,7 @@ function Main({loggedin}) {
                 {natureOption ?
                     <>
                         <h2 className='main__header'>Search results</h2>
-                        <NewsCardList loggedin={loggedin} showAllCards={showAllCards} numCardsShown={numCardsShown}/>
+                        <NewsCardList handleSigninPopupClick={handleSigninPopupClick} loggedin={loggedin} showAllCards={showAllCards} numCardsShown={numCardsShown}/>
                         <button className='main__button' onClick={showMoreCards}>Show more</button> 
                     </> : 
                     preloadOption ? 

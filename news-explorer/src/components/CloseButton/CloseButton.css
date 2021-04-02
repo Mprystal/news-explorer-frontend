@@ -12,3 +12,8 @@
 .button__close-img {
   height: 22px;
 }
+
+.button__close_mobile {
+  margin-right: 21px;
+  z-index: 1001;
+}

@@ -5,7 +5,7 @@ import { initialCards } from '../DeleteStage3/initcards';
 
 
 
-function NewsCardList({showAllCards, numCardsShown, loggedin}) {
+function NewsCardList({showAllCards, numCardsShown, loggedin, handleSigninPopupClick}) {
     return (
         <ul className='newscardlist'>
             {initialCards.slice(0, showAllCards ? initialCards.length : numCardsShown).map(card => (
@@ -18,6 +18,7 @@ function NewsCardList({showAllCards, numCardsShown, loggedin}) {
                     paragraph={card.paragraph}
                     source={card.source}
                     url={card.url}
+                    handleSigninPopupClick={handleSigninPopupClick}
                 />
                 ))}
         </ul>

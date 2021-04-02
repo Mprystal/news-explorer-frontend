@@ -9,13 +9,13 @@ function Footer() {
         <footer className='footer'>
             <p className="footer__paragraph">&copy; 2020 Supersite, Powered by News API</p>
          <div className='footer__container'>
-             <div>
+             <div className='footer__link-container'>
                 <Link className='footer__link' to='/'>Home</Link>
                 <a className='footer__link' href='https://practicum.yandex.com/web/' >Practicum by Yandex</a>
              </div>
-             <div>
-                <a className='footer__link-social' href="https://github.com/Mprystal"><img src={git} alt='github account' /></a>
-                <a className='footer__link-social' href="https://www.facebook.com/"><img src={facebook} alt='facebook account' /></a>
+             <div className='footer__social-container'>
+                <a className='footer__social' href="https://github.com/Mprystal"><img src={git} alt='github account' /></a>
+                <a className='footer__social' href="https://www.facebook.com/"><img src={facebook} alt='facebook account' /></a>
              </div>
          </div>
         </footer>

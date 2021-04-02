@@ -12,6 +12,10 @@ button {
   cursor: url(./images/Pointerhand.png), auto;
 }
 
+a:hover {
+  opacity: 0.8;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

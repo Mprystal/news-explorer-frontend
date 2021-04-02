@@ -14,11 +14,12 @@
   margin-right: auto;
   left: 0;
   right: 0;
+  box-sizing: border-box;
 }
 
 .header__title {
   color: white;
-  font-family: 'Roboto Slab', sans-serif;
+  font-family: 'Roboto Slab';
   font-weight: 700;
   font-size: 20px;
   line-height: 1.2;
@@ -27,24 +28,45 @@
 
 .header__container {
   margin-right: 104px;
+  display: flex;
+  height: 100%;
+  align-items: center;
 }
 
-.header__button {
-  color: white;
+.header__button-mobile {
+  display: none;
   background: transparent;
-  width: 176px;
-  border-radius: 100px;
-  border: 1px solid #ffffff;
-  font-size: 18px;
-  line-height: 1.33;
-  padding: 12px;
+  border: none;
+  margin-right: 20px;
+  padding: 0;
 }
 
-.header__button:focus:not(:focus-visible) {
-  outline: none;
+@media screen and (max-width: 1024px) {
+  .header {
+    height: 66px;
+  }
+
+  .header__title {
+    margin-left: 40px;
+  }
+
+  .header__container {
+    margin-right: 40px;
+  }
 }
 
-.header__logout-img {
-  margin-left: 20px;
-  padding-top: 2px;
+@media screen and (max-width: 650px) {
+  .header {
+    height: 56px;
+  }
+
+  .header__title {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-left: 16px;
+  }
+
+  .header__button-mobile {
+    display: initial;
+  }
 }
