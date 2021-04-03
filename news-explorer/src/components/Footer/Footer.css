@@ -78,11 +78,13 @@
   .footer__link-container {
     width: 200px;
     text-align: left;
+    margin-top: 20px;
   }
 
   .footer__social-container {
     align-self: flex-start;
     justify-self: flex-end;
+    margin-top: 20px;
   }
 
   .footer__link {

@@ -38,12 +38,6 @@
   box-shadow: 0px 0px 2px 1px #2f71e5;
 }
 
-.signin__email-input {
-}
-
-.signin__password-input {
-}
-
 .signin__button-signin {
   background-color: #2f71e5;
   height: 64px;
@@ -79,4 +73,35 @@
 .signin__button-signin:focus:not(:focus-visible),
 .signin__button-signup:focus:not(:focus-visible) {
   outline: none;
+}
+
+@media screen and (max-width: 500px) {
+  .signin__form {
+    width: 320px;
+    height: 560px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .signin__title {
+    margin: 16px 0 17px 17px;
+  }
+
+  .signin__label {
+    margin-left: 16px;
+  }
+
+  .signin__input {
+    width: 288px;
+    margin: 0 0 0 16px;
+    padding-left: 0;
+  }
+
+  .signin__email-input {
+    margin-bottom: 30px;
+  }
+
+  .signin__button-signin {
+    width: 288px;
+    margin: 23px 16px 16px 16px;
+  }
 }

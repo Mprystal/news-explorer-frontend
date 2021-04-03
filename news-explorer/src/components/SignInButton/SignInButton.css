@@ -8,6 +8,9 @@
   line-height: 1.33;
   padding: 12px;
   width: 176px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .button__signin:hover {
@@ -64,5 +67,6 @@
     padding: 12px;
     width: 288px;
     align-self: center;
+    margin-top: 15px;
   }
 }

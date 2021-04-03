@@ -5,12 +5,11 @@ import NewsCardList from '../NewsCardList/NewsCardList';
 import Preloader from '../Preloader/Preloader';
 import NotFound from '../NotFound/NotFound';
 
-function Main({loggedin, handleSigninPopupClick}) {
+function Main({loggedin, handleSigninPopupClick,savedNewsLocation}) {
     const [search, setSearch] = useState('');
     const [natureOption, setNatureOption] = useState(false);
     const [preloadOption, setPreloadOption] = useState(false);
     const [notFoundOption, setNotFoundOption] = useState(false);
-    const [showAllCards, setShowAllCards] = useState(false);
     const [numCardsShown, setNumCardsShown] = useState(3);
 
     function handleSearchChange(e){
@@ -59,7 +58,12 @@ function Main({loggedin, handleSigninPopupClick}) {
                 {natureOption ?
                     <>
                         <h2 className='main__header'>Search results</h2>
-                        <NewsCardList handleSigninPopupClick={handleSigninPopupClick} loggedin={loggedin} showAllCards={showAllCards} numCardsShown={numCardsShown}/>
+                        <NewsCardList 
+                        handleSigninPopupClick={handleSigninPopupClick} 
+                        loggedin={loggedin} 
+                        numCardsShown={numCardsShown}
+                        savedNewsLocation={savedNewsLocation}
+                        />
                         <button className='main__button' onClick={showMoreCards}>Show more</button> 
                     </> : 
                     preloadOption ? 

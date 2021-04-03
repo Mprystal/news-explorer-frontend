@@ -3,9 +3,11 @@ import './NewsCard.css';
 import BookmarkBlack from '../../images/bookmarkblack.png';
 import Bookmark from '../../images/bookmarknormal.png';
 import BookMarkActive from '../../images/bookmarkbluefill.png';
+import Trash from '../../images/trashtrash.png';
+import TrashBlack from '../../images/trashBlack.png';
 
 
-function NewsCard({img, date, header, paragraph, source, url, loggedin,handleSigninPopupClick}) {
+function NewsCard({img, date, header, paragraph, source, url, keyword, loggedin,handleSigninPopupClick, savedNewsLocation}) {
     const [showSaveButton, setShowSaveButton] = useState(false)
     const [isActicleBookmarked, SetIsActicleBookmarked] = useState(false)
 
@@ -27,19 +29,44 @@ function NewsCard({img, date, header, paragraph, source, url, loggedin,handleSig
 
     return (
         <li className='newscard'>
-            <button 
-            className={'newscard__button'}
-            onMouseEnter={()=> setShowSaveButton(true)}
-            onMouseLeave={()=> setShowSaveButton(false)}
-            onClick={bookmarkArticle}
-            >
-                <img className='newscard__button-img' src={changeBookmarkStatus()} alt='bookmark article' />
-            </button>
+            {/* **************** Main Page Logic ******************** */}
+            {savedNewsLocation ?  null :
+                <button 
+                className='newscard__button'
+                onMouseEnter={()=> setShowSaveButton(true)}
+                onMouseLeave={()=> setShowSaveButton(false)}
+                onClick={bookmarkArticle}
+                >
+                    <img className='newscard__button-img' src={changeBookmarkStatus()} alt='bookmark article' />
+                </button>
+            } 
+
             {loggedin ? null : (showSaveButton && (
                 <div className='newscard__reminder'>
                     <p className='newscard__reminder-text'>Sign in to save articles</p>
                 </div>
             ))}
+            {/* ***************************************************** */}
+            {/* **************** News Page Logic ******************** */}
+            {savedNewsLocation ?<> 
+                <button className='newscard__button'
+                onMouseEnter={()=> setShowSaveButton(true)}
+                onMouseLeave={()=> setShowSaveButton(false)}
+                >
+                    <img className='newscard__button-img' src={showSaveButton ? TrashBlack : Trash} alt='bookmark article' />
+                </button>
+                <button className='newscard__button_news'><span className='newscard__button-span'>{keyword}</span></button>
+                
+            </> : null}
+
+            {(showSaveButton && savedNewsLocation) && (
+                <div className='newscard__reminder'>
+                    <p className='newscard__reminder-text'>Remove from saved</p>
+                </div>)}
+
+            
+            {/* ***************************************************** */}
+
             <a className='newscard__link' href={url}>
                 <img className='newscard__img' src={img} alt='Article' />
                 <p className='newscard__date'>{date}</p>

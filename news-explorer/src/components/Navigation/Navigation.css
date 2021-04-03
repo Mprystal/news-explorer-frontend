@@ -30,6 +30,10 @@
   border-bottom: 3px solid white;
 }
 
+.navigation__link_active_news {
+  border-bottom: 3px solid black;
+}
+
 @media screen and (max-width: 1024px) {
   .navigation__link {
     font-size: 16px;
@@ -44,21 +48,11 @@
   .navigation__link_saved-news {
     width: 160px;
   }
-
-  .navigation__link_active {
-    border-bottom: 3px solid white;
-  }
 }
 
 @media screen and (max-width: 650px) {
   .navigation {
     display: none;
-  }
-
-  .navigation__mobile {
-    display: flex;
-    align-items: center;
-    height: 100%;
   }
 
   .navigation__link {
@@ -67,7 +61,8 @@
     width: 100%;
   }
 
-  .navigation__link_active {
+  .navigation__link_active,
+  .navigation__link_active_news {
     border-bottom: none;
   }
 }

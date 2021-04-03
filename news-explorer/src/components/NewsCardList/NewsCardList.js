@@ -3,12 +3,10 @@ import './NewsCardList.css';
 import NewsCard from '../NewsCard/NewsCard';
 import { initialCards } from '../DeleteStage3/initcards';
 
-
-
-function NewsCardList({showAllCards, numCardsShown, loggedin, handleSigninPopupClick}) {
+function NewsCardList({ numCardsShown, loggedin, handleSigninPopupClick, savedNewsLocation}) {
     return (
         <ul className='newscardlist'>
-            {initialCards.slice(0, showAllCards ? initialCards.length : numCardsShown).map(card => (
+            {initialCards.slice(0, savedNewsLocation ? initialCards.length : numCardsShown).map(card => (
                 <NewsCard
                     loggedin={loggedin}
                     key={card.id}
@@ -18,7 +16,9 @@ function NewsCardList({showAllCards, numCardsShown, loggedin, handleSigninPopupC
                     paragraph={card.paragraph}
                     source={card.source}
                     url={card.url}
+                    keyword={card.keyword}
                     handleSigninPopupClick={handleSigninPopupClick}
+                    savedNewsLocation={savedNewsLocation}
                 />
                 ))}
         </ul>

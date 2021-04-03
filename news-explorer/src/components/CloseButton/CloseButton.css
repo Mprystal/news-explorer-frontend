@@ -10,10 +10,20 @@
 }
 
 .button__close-img {
-  height: 22px;
+  content: url(../../images/close.svg);
 }
 
 .button__close_mobile {
-  margin-right: 21px;
   z-index: 1001;
+}
+
+@media screen and (max-width: 650px) {
+  .button__close {
+    margin-right: 21px;
+    padding-right: 0;
+  }
+
+  .button__close-img {
+    content: url(../../images/closesmall.png);
+  }
 }

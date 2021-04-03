@@ -1,5 +1,5 @@
 import React,{ useState, useEffect } from 'react';
-import {Route, Switch, Redirect } from "react-router-dom";
+import {Route, Switch, Redirect, useLocation } from "react-router-dom";
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -7,20 +7,24 @@ import About from '../About/About';
 import Footer from '../Footer/Footer';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import MobileNav from '../MobileNav/MobileNav';
+import SavedNews from '../SavedNews/SavedNews';
 
 function App() {
   const [loggedin, setloggedin] = useState(false);
   const [isSigninPopupOpen, setIsSigninPopupOpen] = useState(false);
   const [isSignupPopupOpen, setIsSignupPopupOpen] = useState(false);
-  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const location = useLocation();
+  const savedNewsLocation = location.pathname === '/saved-news';
+
 
   useEffect(()=>{
     if(isMobileNavOpen){
-      window.onscroll = function(){window.scrollTo(0,0)}
-    } else if(!isMobileNavOpen){
-      window.onscroll = null;
-    }    
-  })
+      document.body.style.overflow = 'hidden';
+    } else if (!isMobileNavOpen){
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMobileNavOpen])
 
   function handleLoginSubmit(e){
     e.preventDefault();
@@ -57,10 +61,14 @@ function App() {
   }
 
 
-
   return (
    <div className='app'> 
-   {isMobileNavOpen ? <MobileNav isMobileNavOpen={isMobileNavOpen} loggedin={loggedin} handleLogoutClick={handleLogoutClick} /> : null}
+   {isMobileNavOpen ? 
+    <MobileNav 
+    isMobileNavOpen={isMobileNavOpen} 
+    handleSigninPopupClick={handleSigninPopupClick} 
+    loggedin={loggedin} 
+    handleLogoutClick={handleLogoutClick} /> : null}
     <Header
      handleSigninPopupClick={handleSigninPopupClick}
      loggedin={loggedin}
@@ -68,14 +76,18 @@ function App() {
      handleMobileNav={handleMobileNav}
      isMobileNavOpen={isMobileNavOpen}
      closeAllPopups={closeAllPopups}
+     isNewsPage={savedNewsLocation}
     />
         <Switch>
           <Route exact path='/'>
-            <Main loggedin={loggedin} handleSigninPopupClick={handleSigninPopupClick}/>
+            <Main loggedin={loggedin} 
+            savedNewsLocation={savedNewsLocation} 
+            handleSigninPopupClick={handleSigninPopupClick}
+            />
             <About />
           </Route>
           <Route exact path='/saved-news'>
-            {/* Saved news component + */}
+            <SavedNews loggedin={loggedin} savedNewsLocation={savedNewsLocation}/>
           </Route>
           <Route path='*'>
             <Redirect to='./' />

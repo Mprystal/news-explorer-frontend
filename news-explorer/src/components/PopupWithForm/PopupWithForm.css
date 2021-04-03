@@ -22,3 +22,20 @@
   flex-direction: column;
   width: 467px;
 }
+
+@media screen and (max-width: 650px) {
+  .popup {
+    background-color: black;
+  }
+
+  .popup__container {
+    margin-top: 10px;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .popup__container {
+    width: 350px;
+  }
+}

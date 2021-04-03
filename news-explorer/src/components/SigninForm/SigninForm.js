@@ -2,7 +2,6 @@ import React from 'react';
 import './SigninForm.css';
 
 function SigninForm({handleFormSwitchClick, handleLoginSubmit}) {
-
     
     return (
         <form className="signin__form" onSubmit={handleLoginSubmit}>
@@ -15,6 +14,7 @@ function SigninForm({handleFormSwitchClick, handleLoginSubmit}) {
                 placeholder="Enter email"
                 // required
             />
+            <span></span>
             <label className='signin__label' htmlFor='signin__password'>Password</label>
             <input
                 id='signin__password'
