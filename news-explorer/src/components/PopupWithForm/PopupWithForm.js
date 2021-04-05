@@ -5,8 +5,7 @@ import SignupForm from '../SignupForm/SignupForm';
 import CloseButton from '../CloseButton/CloseButton';
 
 
-function PopupWithForm({isSigninPopupOpen, closeAllPopups,handleFormSwitchClick, isSignupPopupOpen,handleLoginSubmit}) {
-
+function PopupWithForm({isSigninPopupOpen, closeAllPopups,handleFormSwitchClick, isSignupPopupOpen,handleLoginSubmit, handleFormChange, values, isValid,errors, resetForm, handleInputChange}) {
     useEffect(()=>{
         document.addEventListener('keydown', escapeClose);
         return () => document.removeEventListener('keydown', escapeClose);
@@ -31,7 +30,7 @@ function PopupWithForm({isSigninPopupOpen, closeAllPopups,handleFormSwitchClick,
                 {isSigninPopupOpen && 
                     <>
                         <CloseButton closeAllPopups={closeAllPopups} />                      
-                        <SigninForm handleFormSwitchClick={handleFormSwitchClick} handleLoginSubmit={handleLoginSubmit} />
+                        <SigninForm handleFormSwitchClick={handleFormSwitchClick} handleLoginSubmit={handleLoginSubmit} handleFormChange={handleFormChange} values={values} isValid={isValid} errors={errors} resetForm={resetForm} />
                     </>
                 }
             </div>

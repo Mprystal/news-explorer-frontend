@@ -70,6 +70,10 @@
   color: #2f71e5;
 }
 
+.signup__span:hover {
+  opacity: 0.8;
+}
+
 .signup__button-signin:focus:not(:focus-visible),
 .signup__button-signup:focus:not(:focus-visible) {
   outline: none;

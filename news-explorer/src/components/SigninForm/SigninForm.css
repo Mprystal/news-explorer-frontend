@@ -61,6 +61,19 @@
   background-color: #2a65cc;
 }
 
+.signin__button-signin_disabled {
+  background-color: #e6e8eb;
+  height: 64px;
+  width: 360px;
+  border-radius: 100px;
+  color: #b6bcbf;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
+  border: none;
+  margin: 8px 36px 16px 36px;
+}
+
 .signin__button-signup {
   border: none;
   background-color: white;
@@ -68,6 +81,10 @@
 
 .signin__span {
   color: #2f71e5;
+}
+
+.signin__span:hover {
+  opacity: 0.8;
 }
 
 .signin__button-signin:focus:not(:focus-visible),

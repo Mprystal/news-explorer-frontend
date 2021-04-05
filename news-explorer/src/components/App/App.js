@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react';
+import React,{ useState, useEffect, useCallback } from 'react';
 import {Route, Switch, Redirect, useLocation } from "react-router-dom";
 import './App.css';
 import Header from '../Header/Header';
@@ -8,12 +8,26 @@ import Footer from '../Footer/Footer';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import MobileNav from '../MobileNav/MobileNav';
 import SavedNews from '../SavedNews/SavedNews';
+import ValidateForm from '../ValidateForm/ValidateForm';
 
 function App() {
   const [loggedin, setloggedin] = useState(false);
   const [isSigninPopupOpen, setIsSigninPopupOpen] = useState(false);
   const [isSignupPopupOpen, setIsSignupPopupOpen] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const [isValid, setIsValid] = useState(false);
+  const [values, setValues] = useState({
+    username: '',
+    email: '',
+    password: '',
+    name: ''
+  })
+  const [errors, setErrors] = useState({
+    username: '',
+    email: '',
+    password: '',
+    name: ''
+  });
   const location = useLocation();
   const savedNewsLocation = location.pathname === '/saved-news';
 
@@ -25,6 +39,7 @@ function App() {
       document.body.style.overflow = 'unset';
     }
   }, [isMobileNavOpen])
+
 
   function handleLoginSubmit(e){
     e.preventDefault();
@@ -44,6 +59,7 @@ function App() {
       setIsSigninPopupOpen(false);
       setIsSignupPopupOpen(false);   
       setIsMobileNavOpen(false); 
+      resetForm()
   }
 
   function handleFormSwitchClick(){
@@ -60,6 +76,37 @@ function App() {
     setIsMobileNavOpen(true)
   }
 
+  const handleFormChange = e => {
+    const {name, value} = e.target;
+    console.log(name, value)
+    setValues({
+      ...values,[name]: value
+    })
+    ValidateForm(errors, values, name);
+    setErrors({...errors, [name]: errors[name]})
+    setIsValid(e.target.closest('form').checkValidity());
+    console.log(values.password, values.email, values)
+  }
+  
+  const resetForm = useCallback(
+    (newValues = {username: '',
+    email: '',
+    password: '',
+    name: ''}, 
+
+    newErrors = {username: '',
+    email: '',
+    password: '',
+    name: ''},
+    
+    newIsValid = false) => {
+      setValues(newValues);
+      setErrors(newErrors);
+      setIsValid(newIsValid);
+    },
+    [setValues, setErrors, setIsValid]
+  );
+  
 
   return (
    <div className='app'> 
@@ -68,7 +115,9 @@ function App() {
     isMobileNavOpen={isMobileNavOpen} 
     handleSigninPopupClick={handleSigninPopupClick} 
     loggedin={loggedin} 
-    handleLogoutClick={handleLogoutClick} /> : null}
+    handleLogoutClick={handleLogoutClick} /> 
+    : null}
+
     <Header
      handleSigninPopupClick={handleSigninPopupClick}
      loggedin={loggedin}
@@ -100,6 +149,11 @@ function App() {
         closeAllPopups={closeAllPopups}
         handleFormSwitchClick={handleFormSwitchClick}
         handleLoginSubmit={handleLoginSubmit}
+        handleFormChange={handleFormChange}
+        values={values}
+        isValid={isValid}
+        errors={errors}
+        resetForm={resetForm}
         />
    </div>
   );
