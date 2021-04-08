@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
@@ -31,14 +31,6 @@ function App() {
   });
   const location = useLocation();
   const savedNewsLocation = location.pathname === '/saved-news';
-
-  useEffect(() => {
-    if (isMobileNavOpen) {
-      document.body.style.overflow = 'hidden';
-    } else if (!isMobileNavOpen) {
-      document.body.style.overflow = 'unset';
-    }
-  }, [isMobileNavOpen]);
 
   function handleLoginSubmit(e) {
     e.preventDefault();
