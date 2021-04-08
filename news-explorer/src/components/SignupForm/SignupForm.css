@@ -29,13 +29,23 @@
   width: 358px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  margin: 0 0 31px 36px;
+  margin: 0 0 0 36px;
   padding: 9px 0 10px 5px;
 }
 
 .signup__input:focus {
   outline: none;
   box-shadow: 0px 0px 2px 1px #2f71e5;
+}
+
+.signup__input-error {
+  color: red;
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.25;
+  height: 31px;
+  margin: 3px 0 0 36px;
 }
 
 .signup__button-signup {
@@ -59,6 +69,19 @@
 
 .signup__button-signup:active {
   background-color: #2a65cc;
+}
+
+.signup__button-signup_disabled {
+  background-color: #e6e8eb;
+  height: 64px;
+  width: 360px;
+  border-radius: 100px;
+  color: #b6bcbf;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
+  border: none;
+  margin: 8px 36px 16px 36px;
 }
 
 .signup__button-signin {
@@ -100,13 +123,22 @@
     padding-left: 0;
   }
 
-  .signup__email-input,
+  .signup__input-error {
+    margin-left: 16px;
+  }
+
+  /* .signup__email-input,
   .signup__password-input {
     margin-bottom: 30px;
-  }
+  } */
 
   .signup__button-signup {
     width: 288px;
-    margin: 23px 16px 16px 16px;
+    margin: 0 16px 16px 16px;
+  }
+
+  .signup__button-signup_disabled {
+    width: 288px;
+    margin: 0 16px 16px 16px;
   }
 }
