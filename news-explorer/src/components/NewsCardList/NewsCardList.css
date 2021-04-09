@@ -23,15 +23,17 @@
 
 @media screen and (max-width: 911px) {
   .newscardlist {
-    max-width: 465px;
+    max-width: 768px;
     justify-content: flex-start;
+    gap: 8px;
+    margin: 0 40px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .newscardlist {
-    gap: 8px;
-    margin: 0 40px;
+    max-width: 470px;
+    justify-content: flex-start;
   }
 }
 

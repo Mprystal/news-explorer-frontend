@@ -96,6 +96,14 @@
   margin-top: 16px;
 }
 
+@media screen and (max-width: 911px) {
+  .main__header {
+    font-size: 30px;
+    line-height: 1.13;
+    margin: 40px 0 32px 40px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .main__search-section {
     height: 400px;
@@ -117,12 +125,6 @@
     font-size: 18px;
     line-height: 1.33;
     margin: 16px 0 48px 0;
-  }
-
-  .main__header {
-    font-size: 30px;
-    line-height: 1.13;
-    margin: 40px 0 32px 40px;
   }
 
   .main__button {
