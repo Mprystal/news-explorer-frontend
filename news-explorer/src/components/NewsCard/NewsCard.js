@@ -93,7 +93,7 @@ function NewsCard({
 
       {/* ***************************************************** */}
 
-      <a className='newscard__link' href={url}>
+      <a target='_blank' rel='noreferrer' className='newscard__link' href={url}>
         <img className='newscard__img' src={img} alt='Article' />
         <p className='newscard__date'>{date}</p>
         <div className='newscard__container'>

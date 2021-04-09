@@ -15,15 +15,30 @@ function Footer() {
           <Link className='footer__link' to='/'>
             Home
           </Link>
-          <a className='footer__link' href='https://practicum.yandex.com/web/'>
+          <a
+            target='_blank'
+            rel='noreferrer'
+            className='footer__link'
+            href='https://practicum.yandex.com/web/'
+          >
             Practicum by Yandex
           </a>
         </div>
         <div className='footer__social-container'>
-          <a className='footer__social' href='https://github.com/Mprystal'>
+          <a
+            target='_blank'
+            rel='noreferrer'
+            className='footer__social'
+            href='https://github.com/Mprystal'
+          >
             <img src={git} alt='github account' />
           </a>
-          <a className='footer__social' href='https://www.facebook.com/'>
+          <a
+            target='_blank'
+            rel='noreferrer'
+            className='footer__social'
+            href='https://www.facebook.com/'
+          >
             <img src={facebook} alt='facebook account' />
           </a>
         </div>
