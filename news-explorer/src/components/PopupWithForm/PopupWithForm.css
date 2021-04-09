@@ -46,7 +46,7 @@
   margin-left: 36px;
   line-height: 1.22;
   font-size: 18px;
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
 }
 
 .popup__success-button:hover {

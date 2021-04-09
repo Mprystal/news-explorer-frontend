@@ -23,7 +23,7 @@
 }
 
 .about__title {
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto Slab', sans-serif;
   font-weight: 400;
   margin-top: 45px;
   margin-bottom: 24px;
