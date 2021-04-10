@@ -12,20 +12,20 @@ function SignupForm({
 }) {
   return (
     <form
-      className='signup__form'
+      className='signup-form'
       onSubmit={handleSignupSubmit}
       onReset={resetForm}
       noValidate
       action='#'
     >
-      <h3 className='signup__title'>Sign up</h3>
-      <label className='signup__label' htmlFor='signup__email'>
+      <h3 className='signup-form__title'>Sign up</h3>
+      <label className='signup-form__label' htmlFor='signup-form__email'>
         Email
       </label>
 
       <input
-        id='signup__email'
-        className='signup__input signup__email-input'
+        id='signup-form__email'
+        className='signup-form__input signup-form__email-input'
         type='email'
         placeholder='Enter email'
         name='email'
@@ -34,15 +34,15 @@ function SignupForm({
         required
       />
 
-      <span className='signup__input-error'>{errors.email}</span>
+      <span className='signup-form__input-error'>{errors.email}</span>
 
-      <label className='signup__label' htmlFor='signup__password'>
+      <label className='signup-form__label' htmlFor='signup-form__password'>
         Password
       </label>
 
       <input
-        id='signup__password'
-        className='signup__input signup__password-input'
+        id='signup-form__password'
+        className='signup-form__input signup-form__password-input'
         type='password'
         placeholder='Enter password'
         minLength={6}
@@ -52,15 +52,15 @@ function SignupForm({
         required
       />
 
-      <span className='signup__input-error'>{errors.password}</span>
+      <span className='signup-form__input-error'>{errors.password}</span>
 
-      <label className='signup__label' htmlFor='signup__username'>
+      <label className='signup-form__label' htmlFor='signup-form__username'>
         Username
       </label>
 
       <input
-        id='signup__username'
-        className='signup__input signup__username-input'
+        id='signup-form__username'
+        className='signup-form__input signup-form__username-input'
         type='text'
         placeholder='Enter your username'
         name='username'
@@ -70,11 +70,13 @@ function SignupForm({
         minLength={4}
       />
 
-      <span className='signup__input-error'>{errors.username}</span>
+      <span className='signup-form__input-error'>{errors.username}</span>
 
       <button
         className={
-          isValid ? 'signup__button-signup' : 'signup__button-signup_disabled'
+          isValid
+            ? 'signup-form__button-signup'
+            : 'signup-form__button-signup_disabled'
         }
         disabled={!isValid}
         type='submit'
@@ -82,11 +84,11 @@ function SignupForm({
         Sign up
       </button>
       <button
-        className='signup__button-signin'
+        className='signup-form__button-signin'
         onClick={handleFormSwitchClick}
         type='button'
       >
-        or <span className='signup__span'>Sign in</span>
+        or <span className='signup-form__span'>Sign in</span>
       </button>
     </form>
   );

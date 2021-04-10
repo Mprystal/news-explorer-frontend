@@ -1,4 +1,4 @@
-.signup__form {
+.signup-form {
   width: 430px;
   height: 458px;
   background-color: white;
@@ -9,14 +9,14 @@
   text-align: left;
 }
 
-.signup__title {
+.signup-form__title {
   font-size: 24px;
   line-height: 1.17;
   font-weight: 900;
   margin: 34px 0 22px 36px;
 }
 
-.signup__label {
+.signup-form__label {
   color: #2f71e5;
   font-size: 12px;
   line-height: 1.25;
@@ -25,7 +25,7 @@
   margin-left: 36px;
 }
 
-.signup__input {
+.signup-form__input {
   width: 358px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -33,12 +33,12 @@
   padding: 9px 0 10px 5px;
 }
 
-.signup__input:focus {
+.signup-form__input:focus {
   outline: none;
   box-shadow: 0px 0px 2px 1px #2f71e5;
 }
 
-.signup__input-error {
+.signup-form__input-error {
   color: red;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
@@ -48,7 +48,7 @@
   margin: 3px 0 0 36px;
 }
 
-.signup__button-signup {
+.signup-form__button-signup {
   background-color: #2f71e5;
   height: 64px;
   width: 360px;
@@ -62,16 +62,16 @@
   margin: 8px 36px 16px 36px;
 }
 
-.signup__button-signup:hover {
+.signup-form__button-signup:hover {
   background-color: #347eff;
   transition: ease-in-out 0.2s;
 }
 
-.signup__button-signup:active {
+.signup-form__button-signup:active {
   background-color: #2a65cc;
 }
 
-.signup__button-signup_disabled {
+.signup-form__button-signup_disabled {
   background-color: #e6e8eb;
   height: 64px;
   width: 360px;
@@ -84,60 +84,55 @@
   margin: 8px 36px 16px 36px;
 }
 
-.signup__button-signin {
+.signup-form__button-signin {
   border: none;
   background-color: white;
 }
 
-.signup__span {
+.signup-form__span {
   color: #2f71e5;
 }
 
-.signup__span:hover {
+.signup-form__span:hover {
   opacity: 0.8;
 }
 
-.signup__button-signin:focus:not(:focus-visible),
-.signup__button-signup:focus:not(:focus-visible) {
+.signup-form__button-signin:focus:not(:focus-visible),
+.signup-form__button-signup:focus:not(:focus-visible) {
   outline: none;
 }
 
 @media screen and (max-width: 500px) {
-  .signup__form {
+  .signup-form {
     width: 320px;
     height: 560px;
     border-radius: 16px 16px 0 0;
   }
 
-  .signup__title {
+  .signup-form__title {
     margin: 16px 0 17px 17px;
   }
 
-  .signup__label {
+  .signup-form__label {
     margin-left: 16px;
   }
 
-  .signup__input {
+  .signup-form__input {
     width: 288px;
     margin: 0 0 0 16px;
     padding-left: 0;
   }
 
-  .signup__input-error {
+  .signup-form__input-error {
     margin-left: 16px;
   }
 
-  /* .signup__email-input,
-  .signup__password-input {
-    margin-bottom: 30px;
-  } */
-
-  .signup__button-signup {
+  .signup-form__button-signup {
     width: 288px;
     margin: 0 16px 16px 16px;
   }
 
-  .signup__button-signup_disabled {
+  .signup-form__button-signup_disabled {
     width: 288px;
     margin: 0 16px 16px 16px;
   }

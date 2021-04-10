@@ -1,4 +1,4 @@
-.signin__form {
+.signin-form {
   width: 430px;
   height: 380px;
   background-color: white;
@@ -9,14 +9,14 @@
   text-align: left;
 }
 
-.signin__title {
+.signin-form__title {
   font-size: 24px;
   line-height: 1.17;
   font-weight: 900;
   margin: 34px 0 22px 36px;
 }
 
-.signin__label {
+.signin-form__label {
   color: #2f71e5;
   font-size: 12px;
   line-height: 1.25;
@@ -25,7 +25,7 @@
   margin-left: 36px;
 }
 
-.signin__input {
+.signin-form__input {
   width: 358px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -33,12 +33,12 @@
   padding: 9px 0 10px 5px;
 }
 
-.signin__input:focus {
+.signin-form__input:focus {
   outline: none;
   box-shadow: 0px 0px 2px 1px #2f71e5;
 }
 
-.signin__input-error {
+.signin-form__input-error {
   color: red;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
@@ -48,7 +48,7 @@
   margin: 3px 0 0 36px;
 }
 
-.signin__button-signin {
+.signin-form__button-signin {
   background-color: #2f71e5;
   height: 64px;
   width: 360px;
@@ -62,16 +62,16 @@
   margin: 8px 36px 16px 36px;
 }
 
-.signin__button-signin:hover {
+.signin-form__button-signin:hover {
   background-color: #347eff;
   transition: ease-in-out 0.2s;
 }
 
-.signin__button-signin:active {
+.signin-form__button-signin:active {
   background-color: #2a65cc;
 }
 
-.signin__button-signin_disabled {
+.signin-form__button-signin_disabled {
   background-color: #e6e8eb;
   height: 64px;
   width: 360px;
@@ -84,53 +84,53 @@
   margin: 8px 36px 16px 36px;
 }
 
-.signin__button-signup {
+.signin-form__button-signup {
   border: none;
   background-color: white;
 }
 
-.signin__span {
+.signin-form__span {
   color: #2f71e5;
 }
 
-.signin__span:hover {
+.signin-form__span:hover {
   opacity: 0.8;
 }
 
-.signin__button-signin:focus:not(:focus-visible),
-.signin__button-signup:focus:not(:focus-visible) {
+.signin-form__button-signin:focus:not(:focus-visible),
+.signin-form__button-signup:focus:not(:focus-visible) {
   outline: none;
 }
 
 @media screen and (max-width: 500px) {
-  .signin__form {
+  .signin-form {
     width: 320px;
     height: 560px;
     border-radius: 16px 16px 0 0;
   }
 
-  .signin__title {
+  .signin-form__title {
     margin: 16px 0 17px 17px;
   }
 
-  .signin__label {
+  .signin-form__label {
     margin-left: 16px;
   }
 
-  .signin__input {
+  .signin-form__input {
     width: 288px;
     margin: 0 0 0 16px;
     padding-left: 0;
   }
-  .signin__input-error {
+  .signin-form__input-error {
     margin-left: 16px;
   }
 
-  .signin__button-signin {
+  .signin-form__button-signin {
     width: 288px;
     margin: 0 16px 16px 16px;
   }
-  .signin__button-signin_disabled {
+  .signin-form__button-signin_disabled {
     width: 288px;
     margin: 0 16px 16px 16px;
   }

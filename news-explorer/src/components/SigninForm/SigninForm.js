@@ -12,19 +12,19 @@ function SigninForm({
 }) {
   return (
     <form
-      className='signin__form'
+      className='signin-form'
       onSubmit={handleLoginSubmit}
       noValidate
       action='#'
       onReset={resetForm}
     >
-      <h3 className='signin__title'>Sign in</h3>
-      <label className='signin__label' htmlFor='signin__email'>
+      <h3 className='signin-form__title'>Sign in</h3>
+      <label className='signin-form__label' htmlFor='signin-form__email'>
         Email
       </label>
       <input
-        id='signin__email'
-        className='signin__input signin__email-input'
+        id='signin-form__email'
+        className='signin-form__input signin-form__email-input'
         type='email'
         name='email'
         placeholder='Enter email'
@@ -33,14 +33,14 @@ function SigninForm({
         required
       />
 
-      <span className='signin__input-error'>{errors.email}</span>
+      <span className='signin-form__input-error'>{errors.email}</span>
 
-      <label className='signin__label' htmlFor='signin__password'>
+      <label className='signin-form__label' htmlFor='signin-form__password'>
         Password
       </label>
       <input
-        id='signin__password'
-        className='signin__input signin__password-input'
+        id='signin-form__password'
+        className='signin-form__input signin-form__password-input'
         type='password'
         name='password'
         placeholder='Enter password'
@@ -50,19 +50,24 @@ function SigninForm({
         required
       />
 
-      <span className='signin__input-error'>{errors.password}</span>
+      <span className='signin-form__input-error'>{errors.password}</span>
 
       <button
         className={
-          isValid ? 'signin__button-signin' : 'signin__button-signin_disabled'
+          isValid
+            ? 'signin-form__button-signin'
+            : 'signin-form__button-signin_disabled'
         }
         disabled={!isValid}
         type='submit'
       >
         Sign in
       </button>
-      <button className='signin__button-signup' onClick={handleFormSwitchClick}>
-        or <span className='signin__span'>Sign up</span>
+      <button
+        className='signin-form__button-signup'
+        onClick={handleFormSwitchClick}
+      >
+        or <span className='signin-form__span'>Sign up</span>
       </button>
     </form>
   );

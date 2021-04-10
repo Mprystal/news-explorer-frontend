@@ -3,16 +3,16 @@ import './SearchForm.css';
 
 function SearchForm({ handleSearchFormSubmit, handleSearchChange, search }) {
   return (
-    <form className='search__form' onSubmit={handleSearchFormSubmit}>
+    <form className='search-form' onSubmit={handleSearchFormSubmit}>
       <input
-        className='search__input'
+        className='search-form__input'
         type='text'
         value={search}
         onChange={handleSearchChange}
         name='searchInput'
         placeholder='Enter topic'
       />
-      <button className='search__button' type='submit'>
+      <button className='search-form__button' type='submit'>
         Search
       </button>
     </form>
