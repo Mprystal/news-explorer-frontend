@@ -1,7 +1,7 @@
 import React from 'react';
 import './SignInButton.css';
-import LogoutIcon from '../../images/Unionloggout_white.png';
-import LogoutIconBlack from '../../images/logoutlogoutblack.png';
+import LogoutIcon from '../../images/logoutlogoutWhiteV.svg';
+import LogoutIconBlack from '../../images/logoutlogoutBlackV.svg';
 
 function SignInButton({
   loggedin,

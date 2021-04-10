@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './NewsCard.css';
-import BookmarkBlack from '../../images/bookmarkblack.png';
-import Bookmark from '../../images/bookmarknormal.png';
-import BookMarkActive from '../../images/bookmarkbluefill.png';
-import Trash from '../../images/trashtrash.png';
-import TrashBlack from '../../images/trashBlack.png';
+import BookmarkBlack from '../../images/bookmarkBlackV.svg';
+import Bookmark from '../../images/bookmarkbookmarkRegV.svg';
+import BookMarkActive from '../../images/bookmarkbookmarkBlueV.svg';
+import Trash from '../../images/trashtrashRegV.svg';
+import TrashBlack from '../../images/trashtrashBlackV.svg';
 
 function NewsCard({
   img,

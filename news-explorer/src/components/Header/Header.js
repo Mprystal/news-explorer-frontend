@@ -1,8 +1,8 @@
 import React from 'react';
 import './Header.css';
 import Navigation from '../Navigation/Navigation';
-import DropDownMenu from '../../images/menuburger.png';
-import DropDownMenuBlack from '../../images/menumenublack.png';
+import DropDownMenu from '../../images/menumobileMenuV.svg';
+import DropDownMenuBlack from '../../images/menumobileMenuBlackV.svg';
 import CloseButton from '../CloseButton/CloseButton';
 import SignInButton from '../SignInButton/SignInButton';
 

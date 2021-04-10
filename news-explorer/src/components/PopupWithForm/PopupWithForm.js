@@ -31,9 +31,10 @@ function PopupWithForm({
 
   return (
     <div
-      className={`popup ${isSigninPopupOpen && 'popup__open'} ${
-        isSignupPopupOpen && 'popup__open'
-      } ${isSignupSuccessOpen && 'popup__open'} `}
+      className={`popup ${
+        (isSigninPopupOpen || isSignupPopupOpen || isSignupSuccessOpen) &&
+        'popup_open'
+      }`}
     >
       <div className='popup__container'>
         {isSignupPopupOpen && (
