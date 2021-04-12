@@ -7,13 +7,7 @@ import Trash from '../../images/trashtrashRegV.svg';
 import TrashBlack from '../../images/trashtrashBlackV.svg';
 
 function NewsCard({
-  img,
-  date,
-  header,
-  paragraph,
-  source,
-  url,
-  keyword,
+  card,
   loggedin,
   handleSigninPopupClick,
   savedNewsLocation,
@@ -80,7 +74,7 @@ function NewsCard({
             />
           </button>
           <button className='newscard__button_news'>
-            <span className='newscard__button-span'>{keyword}</span>
+            <span className='newscard__button-span'>{card.keyword}</span>
           </button>
         </>
       ) : null}
@@ -93,13 +87,18 @@ function NewsCard({
 
       {/* ***************************************************** */}
 
-      <a target='_blank' rel='noreferrer' className='newscard__link' href={url}>
-        <img className='newscard__img' src={img} alt='Article' />
-        <p className='newscard__date'>{date}</p>
+      <a
+        target='_blank'
+        rel='noreferrer'
+        className='newscard__link'
+        href={card.url}
+      >
+        <img className='newscard__img' src={card.urlToImage} alt='Article' />
+        <p className='newscard__date'>{card.publishedAt}</p>
         <div className='newscard__container'>
-          <h3 className='newscard__title'>{header}</h3>
-          <p className='newscard__paragraph'>{paragraph}</p>
-          <p className='newscard__source'>{source}</p>
+          <h3 className='newscard__title'>{card.title}</h3>
+          <p className='newscard__paragraph'>{card.description}</p>
+          <p className='newscard__source'>{card.source.name}</p>
         </div>
       </a>
     </li>

@@ -1,45 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Main.css';
 import SearchForm from '../SearchForm/SearchForm';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import Preloader from '../Preloader/Preloader';
 import NotFound from '../NotFound/NotFound';
 
-function Main({ loggedin, handleSigninPopupClick, savedNewsLocation }) {
-  const [search, setSearch] = useState('');
-  const [natureOption, setNatureOption] = useState(false);
-  const [preloadOption, setPreloadOption] = useState(false);
-  const [notFoundOption, setNotFoundOption] = useState(false);
-  const [numCardsShown, setNumCardsShown] = useState(3);
-
-  function handleSearchChange(e) {
-    setSearch(e.target.value);
-  }
-
-  function searchKeyword(text) {
-    if (text === 'nature') {
-      setNatureOption(true);
-    } else if (text === 'search') {
-      setNatureOption(false);
-      setPreloadOption(true);
-    } else if (text !== 'nature' || 'search') {
-      setNatureOption(false);
-      setPreloadOption(false);
-      setNotFoundOption(true);
-    }
-  }
-
-  function handleSearchFormSubmit(e) {
-    e.preventDefault();
-    searchKeyword(search);
-    setNumCardsShown(3);
-    return;
-  }
-
-  function showMoreCards() {
-    setNumCardsShown(numCardsShown + 3);
-  }
-
+function Main({
+  loggedin,
+  handleSigninPopupClick,
+  savedNewsLocation,
+  handleSearchChange,
+  showMoreCards,
+  handleSearchFormSubmit,
+  searchRequest,
+  isLoading,
+  cards,
+  numCardsShown,
+  notFound,
+}) {
   return (
     <main className='main'>
       <section className='main__search-section'>
@@ -52,7 +30,7 @@ function Main({ loggedin, handleSigninPopupClick, savedNewsLocation }) {
           <SearchForm
             handleSearchChange={handleSearchChange}
             handleSearchFormSubmit={handleSearchFormSubmit}
-            search={search}
+            searchRequest={searchRequest}
           />
         </div>
       </section>
@@ -60,7 +38,7 @@ function Main({ loggedin, handleSigninPopupClick, savedNewsLocation }) {
       {/* The preloader will not go here for stage 3, so for stage-2 I put it here so we can see it functions properly. I would normaly make this section a componet and have early returns instead of nesting like this.But I dont know how stage 3 works yet, so I think this will do */}
 
       <section className='main__search-results'>
-        {natureOption ? (
+        {cards && cards.length > 0 ? (
           <>
             <h2 className='main__header'>Search results</h2>
             <NewsCardList
@@ -68,17 +46,18 @@ function Main({ loggedin, handleSigninPopupClick, savedNewsLocation }) {
               loggedin={loggedin}
               numCardsShown={numCardsShown}
               savedNewsLocation={savedNewsLocation}
+              cards={cards}
             />
             <button className='main__button' onClick={showMoreCards}>
               Show more
             </button>
           </>
-        ) : preloadOption ? (
+        ) : isLoading ? (
           <div className='main__preload-container'>
             <Preloader />
             <p className='main__preload-paragraph'>Searching for news...</p>
           </div>
-        ) : notFoundOption ? (
+        ) : notFound ? (
           <div className='main__notfound-container'>
             <NotFound />
             <p className='main__notfound-paragraph'>

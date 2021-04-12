@@ -8,14 +8,20 @@ import Footer from '../Footer/Footer';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import MobileNav from '../MobileNav/MobileNav';
 import SavedNews from '../SavedNews/SavedNews';
-import ValidateForm from '../../utils/ValidateForm/ValidateForm';
+import ValidateForm from '../../utils/ValidateForm';
+import { getCards } from '../../utils/NewsApi';
 
 function App() {
   const [loggedin, setloggedin] = useState(false);
+  const [cards, setCards] = useState([]);
   const [isSigninPopupOpen, setIsSigninPopupOpen] = useState(false);
   const [isSignupPopupOpen, setIsSignupPopupOpen] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [isValid, setIsValid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [notFound, setNotFound] = useState(false);
+  const [searchRequest, setSearchRequest] = useState('');
+  const [numCardsShown, setNumCardsShown] = useState(3);
   const [isSignupSuccessOpen, setIsSignupSuccessOpen] = useState(false);
   const [values, setValues] = useState({
     username: '',
@@ -31,6 +37,26 @@ function App() {
   });
   const location = useLocation();
   const savedNewsLocation = location.pathname === '/saved-news';
+
+  function handleSearchFormSubmit(e) {
+    e.preventDefault();
+    // validate form, no text entered display error
+    //search for keyword if something entered
+    setIsLoading(true);
+    getCards(searchRequest)
+      .then(data => {
+        if (!data || undefined) {
+          setNotFound(true);
+        }
+        setNumCardsShown(3);
+        setCards(data);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(setIsLoading(false));
+    return;
+  }
 
   function handleLoginSubmit(e) {
     e.preventDefault();
@@ -75,11 +101,19 @@ function App() {
     }
   }
 
+  function handleSearchChange(e) {
+    setSearchRequest(e.target.value);
+  }
+
+  function showMoreCards() {
+    setNumCardsShown(numCardsShown + 3);
+  }
+
   function handleMobileNav() {
     setIsMobileNavOpen(true);
   }
 
-  const handleFormChange = (e) => {
+  const handleFormChange = e => {
     const { name, value } = e.target;
     const newValues = {
       ...values,
@@ -130,6 +164,14 @@ function App() {
             loggedin={loggedin}
             savedNewsLocation={savedNewsLocation}
             handleSigninPopupClick={handleSigninPopupClick}
+            handleSearchChange={handleSearchChange}
+            showMoreCards={showMoreCards}
+            handleSearchFormSubmit={handleSearchFormSubmit}
+            searchRequest={searchRequest}
+            isLoading={isLoading}
+            cards={cards}
+            numCardsShown={numCardsShown}
+            notFound={notFound}
           />
           <About />
         </Route>
