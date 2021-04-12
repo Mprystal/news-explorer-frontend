@@ -1,0 +1,12 @@
+@import url(../../vendor/fonts/fonts.css);
+
+.app {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  margin: 0 auto;
+  text-align: center;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}

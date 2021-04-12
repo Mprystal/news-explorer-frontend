@@ -1,0 +1,72 @@
+.signin-button {
+  color: white;
+  background: transparent;
+  height: 48px;
+  border-radius: 100px;
+  border: 1px solid #ffffff;
+  font-size: 18px;
+  line-height: 1.33;
+  padding: 12px;
+  width: 176px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signin-button:hover {
+  opacity: 0.8;
+}
+
+.signin-button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.signin-button__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 17px;
+}
+
+.signin-button__img {
+  margin-left: 19px;
+}
+
+@media screen and (max-width: 1024px) {
+  .signin-button {
+    width: 152px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 8px;
+  }
+
+  .signin-button__img {
+    margin-left: 17px;
+    padding-top: 2px;
+  }
+
+  .signin-button__container {
+    margin: 0 13px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .signin-button {
+    display: none;
+  }
+
+  .signin-button_mobile {
+    color: white;
+    background: transparent;
+    height: 56px;
+    border-radius: 100px;
+    border: 1px solid #ffffff;
+    font-size: 18px;
+    line-height: 1.33;
+    padding: 12px;
+    width: 288px;
+    align-self: center;
+    margin-top: 15px;
+  }
+}

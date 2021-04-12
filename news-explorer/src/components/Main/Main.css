@@ -1,0 +1,170 @@
+.main {
+  background-color: #f5f6f7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main__search-section {
+  width: 100%;
+  height: 576px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../../images/phone.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.main__container {
+  max-width: 608px;
+  margin-top: 80px;
+  text-align: left;
+}
+
+.main__title {
+  font-size: 60px;
+  font-family: 'Roboto Slab', sans-serif;
+  font-weight: 400;
+  line-height: 1.07;
+  color: white;
+  margin: 0;
+}
+
+.main__paragraph {
+  font-size: 18px;
+  line-height: 1.33;
+  color: white;
+  margin: 32px 0 88px 0;
+}
+
+.main__search-results {
+  max-width: 1440px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main__header {
+  font-size: 40px;
+  line-height: 1.15;
+  font-family: 'Roboto Slab', sans-serif;
+  font-weight: 400;
+  align-self: flex-start;
+  margin: 80px 0 64px 104px;
+  text-align: left;
+}
+
+.main__button {
+  width: 288px;
+  height: 64px;
+  border-radius: 80px;
+  border: none;
+  background-color: white;
+  align-self: center;
+  font-size: 18px;
+  line-height: 1.33;
+  font-weight: 500;
+  margin: 64px 0 80px 0;
+}
+
+.main__button:hover {
+  background-color: #e8e8e8;
+  transition: ease-in-out 0.2s;
+}
+
+.main__button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.main__preload-container,
+.main__notfound-container {
+  margin: 80px 0;
+}
+
+.main__preload-paragraph {
+  color: #b6bcbf;
+  font-size: 18px;
+  line-height: 1.33;
+  margin-top: 24px;
+}
+
+.main__notfound-paragraph {
+  color: #b6bcbf;
+  font-size: 16px;
+  line-height: 1.33;
+  margin-top: 16px;
+}
+
+@media screen and (max-width: 911px) {
+  .main__header {
+    font-size: 30px;
+    line-height: 1.13;
+    margin: 40px 0 32px 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main__search-section {
+    height: 400px;
+    background-image: url(../../images/medphone.png);
+  }
+
+  .main__container {
+    max-width: 452px;
+    margin-top: 45px;
+    text-align: left;
+  }
+
+  .main__title {
+    font-size: 36px;
+    line-height: 1.11;
+  }
+
+  .main__paragraph {
+    font-size: 18px;
+    line-height: 1.33;
+    margin: 16px 0 48px 0;
+  }
+
+  .main__button {
+    width: 240px;
+    height: 56px;
+    margin: 32px 0 40px 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .main__search-section {
+    height: 536px;
+    background-image: url(../../images/smallphone.png);
+  }
+
+  .main__container {
+    margin: 60px 16px 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main__title {
+    font-size: 36px;
+    line-height: 1.11;
+  }
+
+  .main__paragraph {
+    font-size: 18px;
+    line-height: 1.33;
+    margin: 16px 0 122px 0;
+  }
+
+  .main__header {
+    margin: 32px 0 58px 16px;
+  }
+
+  .main__button {
+    width: 288px;
+    height: 56px;
+    margin: 15px 16px 32px 16px;
+  }
+}
