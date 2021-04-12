@@ -1,29 +1,29 @@
-.button__close {
+.close-button {
   background-color: transparent;
   border: none;
   align-self: flex-end;
   margin-bottom: 15px;
 }
 
-.button__close:focus:not(:focus-visible) {
+.close-button:focus:not(:focus-visible) {
   outline: none;
 }
 
-.button__close-img {
+.close-button__img {
   content: url(../../images/close.svg);
 }
 
-.button__close_mobile {
+.close-button_mobile {
   z-index: 1001;
 }
 
 @media screen and (max-width: 650px) {
-  .button__close {
+  .close-button {
     margin-right: 21px;
     padding-right: 0;
   }
 
-  .button__close-img {
+  .close-button__img {
     content: url(../../images/closecloseSmallV.svg);
   }
 }

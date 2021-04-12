@@ -1,4 +1,4 @@
-.button__signin {
+.signin-button {
   color: white;
   background: transparent;
   height: 48px;
@@ -13,27 +13,27 @@
   justify-content: center;
 }
 
-.button__signin:hover {
+.signin-button:hover {
   opacity: 0.8;
 }
 
-.button__signin:focus:not(:focus-visible) {
+.signin-button:focus:not(:focus-visible) {
   outline: none;
 }
 
-.button__signin-container {
+.signin-button__container {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 17px;
 }
 
-.button__signin-img {
+.signin-button__img {
   margin-left: 19px;
 }
 
 @media screen and (max-width: 1024px) {
-  .button__signin {
+  .signin-button {
     width: 152px;
     height: 40px;
     font-size: 16px;
@@ -41,22 +41,22 @@
     padding: 8px;
   }
 
-  .button__signin-img {
+  .signin-button__img {
     margin-left: 17px;
     padding-top: 2px;
   }
 
-  .button__signin-container {
+  .signin-button__container {
     margin: 0 13px;
   }
 }
 
 @media screen and (max-width: 650px) {
-  .button__signin {
+  .signin-button {
     display: none;
   }
 
-  .button__signin-mobile {
+  .signin-button_mobile {
     color: white;
     background: transparent;
     height: 56px;

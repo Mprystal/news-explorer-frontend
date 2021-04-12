@@ -11,8 +11,8 @@ function SignInButton({
   isNewsPage,
 }) {
   const mobileButtonChange = isMobileNavOpen
-    ? 'button__signin-mobile'
-    : 'button__signin';
+    ? 'signin-button_mobile'
+    : 'signin-button';
 
   return (
     <>
@@ -30,10 +30,10 @@ function SignInButton({
             borderColor: isNewsPage ? 'black' : null,
           }}
         >
-          <div className='button__signin-container'>
+          <div className='signin-button__container'>
             Name{' '}
             <img
-              className='button__signin-img'
+              className='signin-button__img'
               src={isNewsPage ? LogoutIconBlack : LogoutIcon}
               alt='Logout'
             />
