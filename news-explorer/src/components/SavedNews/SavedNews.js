@@ -3,7 +3,7 @@ import './SavedNews.css';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import NewsCardList from '../NewsCardList/NewsCardList';
 
-function SavedNews({ loggedin, savedNewsLocation }) {
+function SavedNews({ loggedin, savedNewsLocation, cards, numCardsShown }) {
   return (
     <main className='savednews'>
       <SavedNewsHeader />
@@ -11,6 +11,8 @@ function SavedNews({ loggedin, savedNewsLocation }) {
         <NewsCardList
           loggedin={loggedin}
           savedNewsLocation={savedNewsLocation}
+          cards={cards}
+          numCardsShown={numCardsShown}
         />
       </section>
     </main>

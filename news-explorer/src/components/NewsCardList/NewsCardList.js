@@ -5,9 +5,10 @@ import NewsCard from '../NewsCard/NewsCard';
 function NewsCardList({
   numCardsShown,
   loggedin,
-  handleSigninPopupClick,
   savedNewsLocation,
   cards,
+  isActicleBookmarked,
+  bookmarkArticleClick,
 }) {
   return (
     <ul className='newscardlist'>
@@ -18,8 +19,9 @@ function NewsCardList({
             loggedin={loggedin}
             key={card._id ? card._id : cards.indexOf(card)}
             card={card}
-            handleSigninPopupClick={handleSigninPopupClick}
             savedNewsLocation={savedNewsLocation}
+            isActicleBookmarked={isActicleBookmarked}
+            bookmarkArticleClick={bookmarkArticleClick}
           />
         ))}
     </ul>

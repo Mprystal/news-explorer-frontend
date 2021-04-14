@@ -19,6 +19,16 @@
   border: none;
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.newscard__button_active path {
+  fill: #2f71e5;
+  stroke: #2f71e5;
+}
+
+.newscard__button:hover path {
+  stroke: black;
 }
 
 .newscard__button_news {
@@ -38,10 +48,6 @@
   line-height: 1.71;
   font-weight: 500;
   margin: 0 22px;
-}
-
-.newscard__button-img {
-  align-self: center;
 }
 
 .newscard__reminder {

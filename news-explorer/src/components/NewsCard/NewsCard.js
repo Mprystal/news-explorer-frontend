@@ -1,91 +1,47 @@
 import React, { useState } from 'react';
 import './NewsCard.css';
-import BookmarkBlack from '../../images/bookmarkBlackV.svg';
-import Bookmark from '../../images/bookmarkbookmarkRegV.svg';
-import BookMarkActive from '../../images/bookmarkbookmarkBlueV.svg';
-import Trash from '../../images/trashtrashRegV.svg';
-import TrashBlack from '../../images/trashtrashBlackV.svg';
+import { ReactComponent as Bookmark } from '../../images/bookmark.svg';
+import { ReactComponent as Trash } from '../../images/trash.svg';
+import { convertDate } from '../../utils/Helpers';
 
 function NewsCard({
   card,
   loggedin,
-  handleSigninPopupClick,
   savedNewsLocation,
+  isActicleBookmarked,
+  bookmarkArticleClick,
 }) {
   const [showSaveButton, setShowSaveButton] = useState(false);
-  const [isActicleBookmarked, SetIsActicleBookmarked] = useState(false);
-
-  function bookmarkArticle() {
-    if (!loggedin) {
-      handleSigninPopupClick();
-    }
-    SetIsActicleBookmarked(!isActicleBookmarked);
-  }
-
-  function changeBookmarkStatus() {
-    if (isActicleBookmarked && loggedin) {
-      return BookMarkActive;
-    } else if (showSaveButton) {
-      return BookmarkBlack;
-    }
-    return Bookmark;
-  }
 
   return (
     <li className='newscard'>
-      {/* **************** Main Page Logic ******************** */}
-      {savedNewsLocation ? null : (
+      <>
         <button
-          className='newscard__button'
+          className={`newscard__button ${
+            isActicleBookmarked && 'newscard__button_active'
+          }`}
           onMouseEnter={() => setShowSaveButton(true)}
           onMouseLeave={() => setShowSaveButton(false)}
-          onClick={bookmarkArticle}
+          onClick={() => bookmarkArticleClick(card)}
         >
-          <img
-            className='newscard__button-img'
-            src={changeBookmarkStatus()}
-            alt='bookmark article'
-          />
+          {savedNewsLocation ? <Trash /> : <Bookmark />}
         </button>
-      )}
-
-      {loggedin
-        ? null
-        : showSaveButton && (
-            <div className='newscard__reminder'>
-              <p className='newscard__reminder-text'>
-                Sign in to save articles
-              </p>
-            </div>
-          )}
-      {/* ***************************************************** */}
-      {/* **************** News Page Logic ******************** */}
-      {savedNewsLocation ? (
-        <>
-          <button
-            className='newscard__button'
-            onMouseEnter={() => setShowSaveButton(true)}
-            onMouseLeave={() => setShowSaveButton(false)}
-          >
-            <img
-              className='newscard__button-img'
-              src={showSaveButton ? TrashBlack : Trash}
-              alt='bookmark article'
-            />
-          </button>
+        {savedNewsLocation && (
           <button className='newscard__button_news'>
             <span className='newscard__button-span'>{card.keyword}</span>
           </button>
-        </>
-      ) : null}
+        )}
+      </>
 
-      {showSaveButton && savedNewsLocation && (
+      {!loggedin && showSaveButton && (
         <div className='newscard__reminder'>
-          <p className='newscard__reminder-text'>Remove from saved</p>
+          <p className='newscard__reminder-text'>
+            {savedNewsLocation
+              ? 'Remove from saved'
+              : 'Sign in to save articles'}
+          </p>
         </div>
       )}
-
-      {/* ***************************************************** */}
 
       <a
         target='_blank'
@@ -93,8 +49,8 @@ function NewsCard({
         className='newscard__link'
         href={card.url}
       >
-        <img className='newscard__img' src={card.urlToImage} alt='Article' />
-        <p className='newscard__date'>{card.publishedAt}</p>
+        <img className='newscard__img' src={card.urlToImage} alt={card.title} />
+        <p className='newscard__date'>{convertDate(card.publishedAt)}</p>
         <div className='newscard__container'>
           <h3 className='newscard__title'>{card.title}</h3>
           <p className='newscard__paragraph'>{card.description}</p>

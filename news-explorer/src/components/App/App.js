@@ -10,6 +10,7 @@ import MobileNav from '../MobileNav/MobileNav';
 import SavedNews from '../SavedNews/SavedNews';
 import ValidateForm from '../../utils/ValidateForm';
 import { getCards } from '../../utils/NewsApi';
+// import { bookmarkCard, deleteBookmarkCard } from '../../utils/MainApi';
 
 function App() {
   const [loggedin, setloggedin] = useState(false);
@@ -19,7 +20,9 @@ function App() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isActicleBookmarked, SetIsActicleBookmarked] = useState(false);
   const [notFound, setNotFound] = useState(false);
+  const [isServerError, setIsServerError] = useState(false);
   const [searchRequest, setSearchRequest] = useState('');
   const [numCardsShown, setNumCardsShown] = useState(3);
   const [isSignupSuccessOpen, setIsSignupSuccessOpen] = useState(false);
@@ -40,22 +43,46 @@ function App() {
 
   function handleSearchFormSubmit(e) {
     e.preventDefault();
-    // validate form, no text entered display error
-    //search for keyword if something entered
     setIsLoading(true);
+    setIsServerError(false);
+    if (searchRequest.length === 0) {
+      setIsLoading(false);
+      setNotFound(true);
+      return;
+    }
     getCards(searchRequest)
       .then(data => {
-        if (!data || undefined) {
+        if (data.length === 0) {
           setNotFound(true);
         }
         setNumCardsShown(3);
         setCards(data);
       })
       .catch(err => {
+        setIsServerError(true);
         console.log(err);
       })
-      .finally(setIsLoading(false));
-    return;
+      .finally(() => setIsLoading(false));
+  }
+
+  function bookmarkArticleClick(card) {
+    if (!loggedin) {
+      return handleSigninPopupClick();
+    }
+    if (!savedNewsLocation && loggedin) {
+      SetIsActicleBookmarked(!isActicleBookmarked);
+      console.log(card);
+      // bookmarkCard({ card }).then(data => console.log(data, 'data'));
+      return;
+    }
+    if (savedNewsLocation) {
+      return handleDeleteClick();
+    }
+  }
+
+  function handleDeleteClick() {
+    // deleteBookmarkCard()
+    console.log('deltete');
   }
 
   function handleLoginSubmit(e) {
@@ -163,7 +190,6 @@ function App() {
           <Main
             loggedin={loggedin}
             savedNewsLocation={savedNewsLocation}
-            handleSigninPopupClick={handleSigninPopupClick}
             handleSearchChange={handleSearchChange}
             showMoreCards={showMoreCards}
             handleSearchFormSubmit={handleSearchFormSubmit}
@@ -172,6 +198,9 @@ function App() {
             cards={cards}
             numCardsShown={numCardsShown}
             notFound={notFound}
+            isServerError={isServerError}
+            isActicleBookmarked={isActicleBookmarked}
+            bookmarkArticleClick={bookmarkArticleClick}
           />
           <About />
         </Route>
@@ -179,6 +208,8 @@ function App() {
           <SavedNews
             loggedin={loggedin}
             savedNewsLocation={savedNewsLocation}
+            cards={cards}
+            numCardsShown={numCardsShown}
           />
         </Route>
         <Route path='*'>
