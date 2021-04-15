@@ -64,6 +64,7 @@ function SigninForm({
         Sign in
       </button>
       <button
+        type='button'
         className='signin-form__button-signup'
         onClick={handleFormSwitchClick}
       >

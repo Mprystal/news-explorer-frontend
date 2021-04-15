@@ -7,7 +7,6 @@ function NewsCardList({
   loggedin,
   savedNewsLocation,
   cards,
-  isActicleBookmarked,
   bookmarkArticleClick,
 }) {
   return (
@@ -20,7 +19,6 @@ function NewsCardList({
             key={card._id ? card._id : cards.indexOf(card)}
             card={card}
             savedNewsLocation={savedNewsLocation}
-            isActicleBookmarked={isActicleBookmarked}
             bookmarkArticleClick={bookmarkArticleClick}
           />
         ))}

@@ -4,25 +4,27 @@ import { ReactComponent as Bookmark } from '../../images/bookmark.svg';
 import { ReactComponent as Trash } from '../../images/trash.svg';
 import { convertDate } from '../../utils/Helpers';
 
-function NewsCard({
-  card,
-  loggedin,
-  savedNewsLocation,
-  isActicleBookmarked,
-  bookmarkArticleClick,
-}) {
+function NewsCard({ card, loggedin, savedNewsLocation, bookmarkArticleClick }) {
   const [showSaveButton, setShowSaveButton] = useState(false);
+  const [isActicleBookmarked, SetIsActicleBookmarked] = useState(false);
+
+  function changeBookmarkColor() {
+    SetIsActicleBookmarked(!isActicleBookmarked);
+  }
 
   return (
     <li className='newscard'>
       <>
         <button
           className={`newscard__button ${
-            isActicleBookmarked && 'newscard__button_active'
+            isActicleBookmarked && loggedin && 'newscard__button_active'
           }`}
           onMouseEnter={() => setShowSaveButton(true)}
           onMouseLeave={() => setShowSaveButton(false)}
-          onClick={() => bookmarkArticleClick(card)}
+          onClick={() => {
+            bookmarkArticleClick(card);
+            changeBookmarkColor();
+          }}
         >
           {savedNewsLocation ? <Trash /> : <Bookmark />}
         </button>
@@ -54,7 +56,7 @@ function NewsCard({
         <div className='newscard__container'>
           <h3 className='newscard__title'>{card.title}</h3>
           <p className='newscard__paragraph'>{card.description}</p>
-          <p className='newscard__source'>{card.source.name}</p>
+          <p className='newscard__source'>{card.source}</p>
         </div>
       </a>
     </li>

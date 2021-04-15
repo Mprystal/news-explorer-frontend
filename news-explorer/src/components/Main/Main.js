@@ -17,7 +17,6 @@ function Main({
   numCardsShown,
   notFound,
   isServerError,
-  isActicleBookmarked,
   bookmarkArticleClick,
 }) {
   return (
@@ -46,7 +45,6 @@ function Main({
               numCardsShown={numCardsShown}
               savedNewsLocation={savedNewsLocation}
               cards={cards}
-              isActicleBookmarked={isActicleBookmarked}
               bookmarkArticleClick={bookmarkArticleClick}
             />
             <div className='main__button-container'>
