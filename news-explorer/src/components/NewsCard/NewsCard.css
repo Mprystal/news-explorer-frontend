@@ -30,6 +30,9 @@
 .newscard__button:hover path {
   stroke: black;
 }
+.newscard__button_fill:hover path {
+  fill: black;
+}
 
 .newscard__button_news {
   height: 40px;

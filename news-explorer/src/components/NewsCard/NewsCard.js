@@ -2,29 +2,23 @@ import React, { useState } from 'react';
 import './NewsCard.css';
 import { ReactComponent as Bookmark } from '../../images/bookmark.svg';
 import { ReactComponent as Trash } from '../../images/trash.svg';
-import { convertDate } from '../../utils/Helpers';
 
 function NewsCard({ card, loggedin, savedNewsLocation, bookmarkArticleClick }) {
   const [showSaveButton, setShowSaveButton] = useState(false);
-  const [isActicleBookmarked, SetIsActicleBookmarked] = useState(false);
-
-  function changeBookmarkColor() {
-    SetIsActicleBookmarked(!isActicleBookmarked);
-  }
 
   return (
     <li className='newscard'>
       <>
         <button
           className={`newscard__button ${
-            isActicleBookmarked && loggedin && 'newscard__button_active'
-          }`}
+            !savedNewsLocation &&
+            card.isSaved &&
+            loggedin &&
+            'newscard__button_active'
+          } ${savedNewsLocation && loggedin && 'newscard__button_fill'} `}
           onMouseEnter={() => setShowSaveButton(true)}
           onMouseLeave={() => setShowSaveButton(false)}
-          onClick={() => {
-            bookmarkArticleClick(card);
-            changeBookmarkColor();
-          }}
+          onClick={() => bookmarkArticleClick(card)}
         >
           {savedNewsLocation ? <Trash /> : <Bookmark />}
         </button>
@@ -35,7 +29,8 @@ function NewsCard({ card, loggedin, savedNewsLocation, bookmarkArticleClick }) {
         )}
       </>
 
-      {!loggedin && showSaveButton && (
+      {((!loggedin && showSaveButton) ||
+        (loggedin && showSaveButton && savedNewsLocation)) && (
         <div className='newscard__reminder'>
           <p className='newscard__reminder-text'>
             {savedNewsLocation
@@ -49,13 +44,13 @@ function NewsCard({ card, loggedin, savedNewsLocation, bookmarkArticleClick }) {
         target='_blank'
         rel='noreferrer'
         className='newscard__link'
-        href={card.url}
+        href={card.link}
       >
-        <img className='newscard__img' src={card.urlToImage} alt={card.title} />
-        <p className='newscard__date'>{convertDate(card.publishedAt)}</p>
+        <img className='newscard__img' src={card.image} alt={card.title} />
+        <p className='newscard__date'>{card.date}</p>
         <div className='newscard__container'>
           <h3 className='newscard__title'>{card.title}</h3>
-          <p className='newscard__paragraph'>{card.description}</p>
+          <p className='newscard__paragraph'>{card.text}</p>
           <p className='newscard__source'>{card.source}</p>
         </div>
       </a>

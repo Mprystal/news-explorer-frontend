@@ -23,7 +23,10 @@ import {
   getUserInfo,
   register,
   authorize,
+  getArticles,
 } from '../../utils/MainApi';
+const notFoundUrlImage =
+  'https://webhostingmedia.net/wp-content/uploads/2018/01/http-error-404-not-found.png';
 
 function App() {
   const [loggedin, setloggedin] = useState(false);
@@ -63,7 +66,11 @@ function App() {
         .then(data => {
           if (data) {
             setloggedin(true);
-            setCurrentUser({ email: data.email, name: data.name });
+            setCurrentUser({
+              email: data.email,
+              name: data.name,
+              _id: data._id,
+            });
           }
         })
         .catch(err => console.log(err));
@@ -71,6 +78,39 @@ function App() {
       setloggedin(false);
     }
   }, [token]);
+
+  useEffect(() => {
+    if (localStorage.getItem('searchResults')) {
+      setCards(JSON.parse(localStorage.getItem('searchResults')));
+    }
+    if (localStorage.getItem('savedCards')) {
+      setSavedCards(JSON.parse(localStorage.getItem('savedCards')));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (savedNewsLocation && token) {
+      getArticles(token).then(data => {
+        console.log(data);
+        const ownedCards = data.filter(card => card.owner === currentUser._id);
+        console.log(ownedCards);
+        setSavedCards(ownedCards);
+      });
+    }
+  }, []);
+
+  function sameArticleKeyCheck(article, savedCard) {
+    const articleKeys = [
+      'keyword',
+      'date',
+      'image',
+      'link',
+      'source',
+      'text',
+      'title',
+    ];
+    return articleKeys.every(key => article[key] === savedCard[key]);
+  }
 
   function handleSearchFormSubmit(e) {
     e.preventDefault();
@@ -87,11 +127,27 @@ function App() {
           setNotFound(true);
         }
         data.forEach(article => {
+          if (!article.image || article.image.length === 0) {
+            article.image = notFoundUrlImage;
+          }
           article.keyword = searchRequest;
           article.source = article.source.name;
+          if (loggedin) {
+            savedCards.forEach(savedCard => {
+              if (sameArticleKeyCheck(article, savedCard)) {
+                article.isSaved = true;
+                article._id = savedCard._id;
+              }
+              return;
+            });
+          }
         });
+        return data;
+      })
+      .then(updatedCards => {
         setNumCardsShown(3);
-        setCards(data);
+        setCards(updatedCards);
+        localStorage.setItem('searchResults', JSON.stringify(updatedCards));
       })
       .catch(err => {
         setIsServerError(true);
@@ -106,26 +162,42 @@ function App() {
     }
     if (!savedNewsLocation && loggedin) {
       if (!card.isSaved) {
-        bookmarkCard(card, token).then(data => {
-          data.isSaved = true;
-          console.log(data, 'data');
-          console.log(savedCards, 'saved');
-          const newSavedCards = [...savedCards, data];
-          console.log(newSavedCards, 'newSaved');
+        bookmarkCard(card, token).then(cardData => {
+          console.log(cardData);
+          cardData.isSaved = true;
+          //look over all cards to see if it is card you passed in
+          const newCards = cards.map(c => (c === card ? cardData : c));
+          const newSavedCards = [...savedCards, cardData];
           setSavedCards(newSavedCards);
+          setCards(newCards);
+          localStorage.setItem('searchResults', JSON.stringify(newCards));
+          localStorage.setItem('savedCards', JSON.stringify(newSavedCards));
         });
+      } else {
+        handleDeleteClick(card);
       }
 
       return;
     }
     if (savedNewsLocation) {
-      return handleDeleteClick();
+      return handleDeleteClick(card);
     }
   }
 
-  function handleDeleteClick() {
-    // deleteBookmarkCard()
-    console.log('deltete');
+  function handleDeleteClick(card) {
+    deleteBookmarkCard(card._id, token)
+      .then(res => {
+        if (res.ok) {
+          card.isSaved = false;
+          const newCards = cards.map(c => (c._id === card._id ? card : c));
+          const newSavedCards = savedCards.filter(c => c._id !== card._id);
+          setSavedCards(newSavedCards);
+          setCards(newCards);
+          localStorage.setItem('searchResults', JSON.stringify(newCards));
+          localStorage.setItem('savedCards', JSON.stringify(newSavedCards));
+        }
+      })
+      .catch(err => console.log(err));
   }
 
   function handleSignupSubmit(e) {
@@ -147,7 +219,11 @@ function App() {
         if (data && data.token) {
           setToken(data.token);
           localStorage.setItem('jwt', data.token);
-          setCurrentUser({ email: values.email, name: values.username });
+          setCurrentUser({
+            email: data.email,
+            name: data.username,
+            _id: data._id,
+          });
           setloggedin(true);
         }
       })
@@ -159,8 +235,12 @@ function App() {
   }
 
   function handleLogoutClick() {
-    localStorage.removeItem('jwt');
-    setToken(() => localStorage.getItem('jwt'));
+    localStorage.clear();
+    const newCards = cards;
+    newCards.forEach(c => {
+      c.isSaved = false;
+    });
+    setCards(newCards);
     setloggedin(false);
     history.push('/');
   }
@@ -218,13 +298,13 @@ function App() {
     (
       newValues = { username: '', email: '', password: '', name: '' },
       newErrors = { username: '', email: '', password: '', name: '' },
-      newIsValid = false
+      newIsValid = false,
     ) => {
       setValues(newValues);
       setErrors(newErrors);
       setIsValid(newIsValid);
     },
-    [setValues, setErrors, setIsValid]
+    [setValues, setErrors, setIsValid],
   );
 
   return (
@@ -270,8 +350,9 @@ function App() {
             <SavedNews
               loggedin={loggedin}
               savedNewsLocation={savedNewsLocation}
-              cards={cards}
+              cards={savedCards}
               numCardsShown={numCardsShown}
+              bookmarkArticleClick={bookmarkArticleClick}
             />
           </Route>
           <Route path='*'>

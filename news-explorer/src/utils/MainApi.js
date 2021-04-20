@@ -9,7 +9,7 @@ export const register = (email, password, name) => {
     },
     body: JSON.stringify({ email, password, name }),
   }).then(res =>
-    res.ok ? res.json() : Promise.reject(`Error! ${res.status}`)
+    res.ok ? res.json() : Promise.reject(`Error! ${res.status}`),
   );
 };
 
@@ -54,16 +54,8 @@ export const getArticles = token => {
 };
 
 export const bookmarkCard = (
-  {
-    keyword,
-    description: text,
-    publishedAt: date,
-    source,
-    title,
-    url: link,
-    urlToImage: image,
-  },
-  token
+  { keyword, text, date, source, title, link, image },
+  token,
 ) => {
   return fetch(`${BASE_URL}/articles`, {
     method: 'POST',
@@ -83,7 +75,7 @@ export const bookmarkCard = (
     }),
   })
     .then(res =>
-      res.ok ? res.json() : Promise.reject(`Error! ${res.statusText}`)
+      res.ok ? res.json() : Promise.reject(`Error! ${res.statusText}`),
     )
     .then(data => data.data);
 };
