@@ -9,21 +9,17 @@
   outline: none;
 }
 
-.close-button__img {
-  content: url(../../images/close.svg);
-}
-
 .close-button_mobile {
   z-index: 1001;
+}
+.close-button_mobile svg {
+  height: 24px;
+  width: 24px;
 }
 
 @media screen and (max-width: 650px) {
   .close-button {
     margin-right: 21px;
     padding-right: 0;
-  }
-
-  .close-button__img {
-    content: url(../../images/closecloseSmallV.svg);
   }
 }

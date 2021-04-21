@@ -9,7 +9,7 @@ export const register = (email, password, name) => {
     },
     body: JSON.stringify({ email, password, name }),
   }).then(res =>
-    res.ok ? res.json() : Promise.reject(`Error! ${res.status}`),
+    res.ok ? res.json() : Promise.reject(`Error! ${res.statusText}`),
   );
 };
 
@@ -22,7 +22,7 @@ export const authorize = (email, password) => {
     },
     body: JSON.stringify({ email, password }),
   })
-    .then(res => (res.ok ? res.json() : Promise.reject(`Error! ${res.status}`)))
+    .then(res => (res.ok ? res.json() : Promise.reject(`Error! ${res.statusText}`)))
     .then(data => {
       if (data.token) {
         return data;
@@ -38,7 +38,7 @@ export const getUserInfo = token => {
       Authorization: `Bearer ${token}`,
     },
   })
-    .then(res => (res.ok ? res.json() : Promise.reject(`Error! ${res.status}`)))
+    .then(res => (res.ok ? res.json() : Promise.reject(`Error! ${res.statusText}`)))
     .then(data => data.data);
 };
 

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './SignInButton.css';
-import LogoutIcon from '../../images/logoutlogoutWhiteV.svg';
-import LogoutIconBlack from '../../images/logoutlogoutBlackV.svg';
+import { ReactComponent as LogoutIcon } from '../../images/logoutlogoutWhiteV.svg';
+
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function SignInButton({
@@ -33,13 +33,13 @@ function SignInButton({
             borderColor: isNewsPage ? 'black' : null,
           }}
         >
-          <div className='signin-button__container'>
+          <div
+            className={`signin-button__container ${
+              isNewsPage && 'signin-button__container_black'
+            }`}
+          >
             {currentUser && currentUser.name}
-            <img
-              className='signin-button__img'
-              src={isNewsPage ? LogoutIconBlack : LogoutIcon}
-              alt='Logout'
-            />
+            <LogoutIcon style={{ marginLeft: '17px' }} />
           </div>
         </button>
       )}

@@ -12,14 +12,12 @@
 @media screen and (max-width: 1439px) {
   .newscardlist {
     max-width: 1280px;
-    justify-content: flex-start;
   }
 }
 
 @media screen and (max-width: 1278px) {
   .newscardlist {
     max-width: 830px;
-    justify-content: flex-start;
   }
 }
 

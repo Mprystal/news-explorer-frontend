@@ -9,6 +9,7 @@ function NewsCardList({
   cards,
   bookmarkArticleClick,
 }) {
+ 
   return (
     <ul className='newscardlist'>
       {cards

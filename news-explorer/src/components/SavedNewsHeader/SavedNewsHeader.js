@@ -1,16 +1,20 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import './SavedNewsHeader.css';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import {tooManyKeywords} from '../../utils/Helpers'
 
-function SavedNewsHeader() {
+function SavedNewsHeader(cards) {
+  const currentUser = useContext(CurrentUserContext);
+
   return (
     <section className='savednewsheader'>
       <div className='savednewsheader__container'>
         <p className='savednewsheader__text_1'>Saved articles</p>
         <h2 className='savednewsheader__title'>
-          Name, you have 5 saved articles
+          {currentUser.name}, you have {cards.cards.length} saved articles
         </h2>
         <p className='savednewsheader__text_2'>
-          By keywords: <b>Nature, Yellowstone, and 2 other</b>
+          By keywords: <b>{tooManyKeywords(cards)}</b>
         </p>
       </div>
     </section>

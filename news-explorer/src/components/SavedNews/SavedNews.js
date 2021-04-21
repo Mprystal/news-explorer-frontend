@@ -12,7 +12,7 @@ function SavedNews({
 }) {
   return (
     <main className='savednews'>
-      <SavedNewsHeader />
+      <SavedNewsHeader cards={cards} />
       <section className='savednews__results'>
         <NewsCardList
           loggedin={loggedin}

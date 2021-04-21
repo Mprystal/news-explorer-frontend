@@ -69,4 +69,9 @@
   .header__button-mobile {
     display: initial;
   }
+
+  .header__button-mobile_black rect {
+    fill: black;
+    stroke: black;
+  }
 }

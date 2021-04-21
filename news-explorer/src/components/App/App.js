@@ -25,6 +25,7 @@ import {
   authorize,
   getArticles,
 } from '../../utils/MainApi';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 const notFoundUrlImage =
   'https://webhostingmedia.net/wp-content/uploads/2018/01/http-error-404-not-found.png';
 
@@ -63,17 +64,16 @@ function App() {
   useEffect(() => {
     if (token) {
       getUserInfo(token)
-        .then(data => {
+        .then((data) => {
           if (data) {
             setloggedin(true);
             setCurrentUser({
               email: data.email,
-              name: data.name,
-              _id: data._id,
+              name: data.name
             });
           }
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     } else {
       setloggedin(false);
     }
@@ -89,15 +89,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (savedNewsLocation && token) {
-      getArticles(token).then(data => {
-        console.log(data);
-        const ownedCards = data.filter(card => card.owner === currentUser._id);
-        console.log(ownedCards);
-        setSavedCards(ownedCards);
+    if (loggedin) {
+      getArticles(token).then((data) => {
+        setSavedCards(data)
+        localStorage.setItem('savedCards', JSON.stringify(data));
       });
     }
-  }, []);
+  }, [loggedin,token]);
 
   function sameArticleKeyCheck(article, savedCard) {
     const articleKeys = [
@@ -109,7 +107,7 @@ function App() {
       'text',
       'title',
     ];
-    return articleKeys.every(key => article[key] === savedCard[key]);
+    return articleKeys.every((key) => article[key] === savedCard[key]);
   }
 
   function handleSearchFormSubmit(e) {
@@ -122,18 +120,18 @@ function App() {
       return;
     }
     getCards(searchRequest)
-      .then(data => {
+      .then((data) => {
         if (data.length === 0) {
           setNotFound(true);
         }
-        data.forEach(article => {
+        data.forEach((article) => {
           if (!article.image || article.image.length === 0) {
             article.image = notFoundUrlImage;
           }
-          article.keyword = searchRequest;
+          article.keyword = searchRequest[0].toUpperCase()+searchRequest.slice(1).toLowerCase();
           article.source = article.source.name;
           if (loggedin) {
-            savedCards.forEach(savedCard => {
+            savedCards.forEach((savedCard) => {
               if (sameArticleKeyCheck(article, savedCard)) {
                 article.isSaved = true;
                 article._id = savedCard._id;
@@ -144,12 +142,12 @@ function App() {
         });
         return data;
       })
-      .then(updatedCards => {
+      .then((updatedCards) => {
         setNumCardsShown(3);
         setCards(updatedCards);
         localStorage.setItem('searchResults', JSON.stringify(updatedCards));
       })
-      .catch(err => {
+      .catch((err) => {
         setIsServerError(true);
         console.log(err);
       })
@@ -162,11 +160,9 @@ function App() {
     }
     if (!savedNewsLocation && loggedin) {
       if (!card.isSaved) {
-        bookmarkCard(card, token).then(cardData => {
-          console.log(cardData);
+        bookmarkCard(card, token).then((cardData) => {
           cardData.isSaved = true;
-          //look over all cards to see if it is card you passed in
-          const newCards = cards.map(c => (c === card ? cardData : c));
+          const newCards = cards.map((c) => (c === card ? cardData : c));
           const newSavedCards = [...savedCards, cardData];
           setSavedCards(newSavedCards);
           setCards(newCards);
@@ -186,18 +182,18 @@ function App() {
 
   function handleDeleteClick(card) {
     deleteBookmarkCard(card._id, token)
-      .then(res => {
+      .then((res) => {
         if (res.ok) {
           card.isSaved = false;
-          const newCards = cards.map(c => (c._id === card._id ? card : c));
-          const newSavedCards = savedCards.filter(c => c._id !== card._id);
+          const newCards = cards.map((c) => (c._id === card._id ? card : c));
+          const newSavedCards = savedCards.filter((c) => c._id !== card._id);
           setSavedCards(newSavedCards);
           setCards(newCards);
           localStorage.setItem('searchResults', JSON.stringify(newCards));
           localStorage.setItem('savedCards', JSON.stringify(newSavedCards));
         }
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   function handleSignupSubmit(e) {
@@ -209,20 +205,19 @@ function App() {
         setIsSigninPopupOpen(false);
         setIsSignupPopupOpen(false);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   function handleLoginSubmit(e) {
     e.preventDefault();
     authorize(values.email, values.password)
-      .then(data => {
+      .then((data) => {
         if (data && data.token) {
           setToken(data.token);
           localStorage.setItem('jwt', data.token);
           setCurrentUser({
             email: data.email,
-            name: data.username,
-            _id: data._id,
+            name: data.username
           });
           setloggedin(true);
         }
@@ -231,13 +226,13 @@ function App() {
         resetForm();
         closeAllPopups();
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   function handleLogoutClick() {
     localStorage.clear();
     const newCards = cards;
-    newCards.forEach(c => {
+    newCards.forEach((c) => {
       c.isSaved = false;
     });
     setCards(newCards);
@@ -282,7 +277,7 @@ function App() {
     setIsMobileNavOpen(true);
   }
 
-  const handleFormChange = e => {
+  const handleFormChange = (e) => {
     const { name, value } = e.target;
     const newValues = {
       ...values,
@@ -346,7 +341,17 @@ function App() {
             />
             <About />
           </Route>
-          <Route exact path='/saved-news'>
+          <ProtectedRoute
+          exact path='/saved-news'
+          loggedin={loggedin}
+          savedNewsLocation={savedNewsLocation}
+          cards={savedCards}
+          numCardsShown={numCardsShown}
+          bookmarkArticleClick={bookmarkArticleClick}
+          component={SavedNews}
+          />
+
+          {/* <Route exact path='/saved-news'>
             <SavedNews
               loggedin={loggedin}
               savedNewsLocation={savedNewsLocation}
@@ -354,7 +359,7 @@ function App() {
               numCardsShown={numCardsShown}
               bookmarkArticleClick={bookmarkArticleClick}
             />
-          </Route>
+          </Route> */}
           <Route path='*'>
             <Redirect to='./' />
           </Route>
@@ -373,6 +378,7 @@ function App() {
           resetForm={resetForm}
           handleSignupSubmit={handleSignupSubmit}
           isSignupSuccessOpen={isSignupSuccessOpen}
+          isMobileNavOpen={isMobileNavOpen}
         />
       </div>
     </CurrentUserContext.Provider>

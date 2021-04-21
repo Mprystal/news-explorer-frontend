@@ -9,7 +9,7 @@ export const getCards = searchRequest => {
   return fetch(
     `${BASE_NEWS_URL}${searchRequest}&from=${lastWeek.toISOString()}&to=${now.toISOString()}&sortBy=popularity&pageSize=100&apiKey=${apiKey}`
   )
-    .then(res => (res.ok ? res.json() : Promise.reject(`Error! ${res.status}`)))
+    .then(res => (res.ok ? res.json() : Promise.reject(`Error! ${res.statusText}`)))
     .then(data => {
       return data.articles;
     })

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import './NewsCard.css';
 import { ReactComponent as Bookmark } from '../../images/bookmark.svg';
 import { ReactComponent as Trash } from '../../images/trash.svg';
+import { converText } from '../../utils/Helpers';
 
 function NewsCard({ card, loggedin, savedNewsLocation, bookmarkArticleClick }) {
-  const [showSaveButton, setShowSaveButton] = useState(false);
-
+  const [showReminderDiv, setShowReminderDiv] = useState(false);
   return (
     <li className='newscard'>
       <>
@@ -16,8 +16,8 @@ function NewsCard({ card, loggedin, savedNewsLocation, bookmarkArticleClick }) {
             loggedin &&
             'newscard__button_active'
           } ${savedNewsLocation && loggedin && 'newscard__button_fill'} `}
-          onMouseEnter={() => setShowSaveButton(true)}
-          onMouseLeave={() => setShowSaveButton(false)}
+          onMouseEnter={() => setShowReminderDiv(true)}
+          onMouseLeave={() => setShowReminderDiv(false)}
           onClick={() => bookmarkArticleClick(card)}
         >
           {savedNewsLocation ? <Trash /> : <Bookmark />}
@@ -29,8 +29,8 @@ function NewsCard({ card, loggedin, savedNewsLocation, bookmarkArticleClick }) {
         )}
       </>
 
-      {((!loggedin && showSaveButton) ||
-        (loggedin && showSaveButton && savedNewsLocation)) && (
+      {((!loggedin && showReminderDiv) ||
+        (loggedin && showReminderDiv && savedNewsLocation)) && (
         <div className='newscard__reminder'>
           <p className='newscard__reminder-text'>
             {savedNewsLocation
@@ -50,7 +50,7 @@ function NewsCard({ card, loggedin, savedNewsLocation, bookmarkArticleClick }) {
         <p className='newscard__date'>{card.date}</p>
         <div className='newscard__container'>
           <h3 className='newscard__title'>{card.title}</h3>
-          <p className='newscard__paragraph'>{card.text}</p>
+          <p className='newscard__paragraph'>{converText(card.text)}</p>
           <p className='newscard__source'>{card.source}</p>
         </div>
       </a>
