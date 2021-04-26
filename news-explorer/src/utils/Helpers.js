@@ -33,13 +33,10 @@ export function tooManyKeywords(cards){
     return card.keyword
   })
 
-  const filteredKeywordArray =  keywordArray.filter((k,index)=>{
-    return keywordArray.indexOf(k) === index;
-  })
-
-  if(filteredKeywordArray.length > 3){
-    return (`${filteredKeywordArray[0]}, ${filteredKeywordArray[1]}, and ${filteredKeywordArray.length - 2} other${
-      filteredKeywordArray.length - 2 !== 1 ? 's' : ''
-    }`)
-  } return filteredKeywordArray.join(', ')
+  const filterKeywordCopies = new Set(keywordArray);
+  const filteredKeywords = [...filterKeywordCopies]
+ 
+  if(filteredKeywords.length > 3){
+    return (`${filteredKeywords[0]}, ${filteredKeywords[1]}, and ${filteredKeywords.length - 2} others`)
+  } return filteredKeywords.join(', ')
 }  
