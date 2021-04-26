@@ -29,14 +29,24 @@ export function converText(text) {
 
 export function tooManyKeywords(cards){
 
-  const keywordArray = cards.cards.map((card)=>{
-    return card.keyword
-  })
+  const filteredKeywords = [...new Set(cards.cards.map(({ keyword }) => keyword))]
+  const [first, second] = filteredKeywords
+  const { length } = filteredKeywords
 
-  const filterKeywordCopies = new Set(keywordArray);
-  const filteredKeywords = [...filterKeywordCopies]
- 
-  if(filteredKeywords.length > 3){
-    return (`${filteredKeywords[0]}, ${filteredKeywords[1]}, and ${filteredKeywords.length - 2} others`)
-  } return filteredKeywords.join(', ')
+  return length > 3
+    ? `${first}, ${second}, and ${length - 2} others`
+    : filteredKeywords.join(', ')
+
+//   const keywordArray = cards.cards.map((card)=>{
+//     return card.keyword
+//   })
+
+//   const filterKeywordCopies = new Set(keywordArray);
+//   const filteredKeywords = [...filterKeywordCopies]
+//  const {length} = filteredKeywords
+//  console.log(length)
+
+//   if(filteredKeywords.length > 3){
+//     return (`${filteredKeywords[0]}, ${filteredKeywords[1]}, and ${filteredKeywords.length - 2} others`)
+//   } return filteredKeywords.join(', ')
 }  
