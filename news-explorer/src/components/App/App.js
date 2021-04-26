@@ -69,7 +69,7 @@ function App() {
             setloggedin(true);
             setCurrentUser({
               email: data.email,
-              name: data.name
+              name: data.name,
             });
           }
         })
@@ -90,12 +90,14 @@ function App() {
 
   useEffect(() => {
     if (loggedin) {
-      getArticles(token).then((data) => {
-        setSavedCards(data)
-        localStorage.setItem('savedCards', JSON.stringify(data));
-      });
+      getArticles(token)
+        .then((data) => {
+          setSavedCards(data);
+          localStorage.setItem('savedCards', JSON.stringify(data));
+        })
+        .catch((err) => console.log(err));
     }
-  }, [loggedin,token]);
+  }, [loggedin, token]);
 
   function sameArticleKeyCheck(article, savedCard) {
     const articleKeys = [
@@ -128,7 +130,9 @@ function App() {
           if (!article.image || article.image.length === 0) {
             article.image = notFoundUrlImage;
           }
-          article.keyword = searchRequest[0].toUpperCase()+searchRequest.slice(1).toLowerCase();
+          article.keyword =
+            searchRequest[0].toUpperCase() +
+            searchRequest.slice(1).toLowerCase();
           article.source = article.source.name;
           if (loggedin) {
             savedCards.forEach((savedCard) => {
@@ -160,15 +164,17 @@ function App() {
     }
     if (!savedNewsLocation && loggedin) {
       if (!card.isSaved) {
-        bookmarkCard(card, token).then((cardData) => {
-          cardData.isSaved = true;
-          const newCards = cards.map((c) => (c === card ? cardData : c));
-          const newSavedCards = [...savedCards, cardData];
-          setSavedCards(newSavedCards);
-          setCards(newCards);
-          localStorage.setItem('searchResults', JSON.stringify(newCards));
-          localStorage.setItem('savedCards', JSON.stringify(newSavedCards));
-        });
+        bookmarkCard(card, token)
+          .then((cardData) => {
+            cardData.isSaved = true;
+            const newCards = cards.map((c) => (c === card ? cardData : c));
+            const newSavedCards = [...savedCards, cardData];
+            setSavedCards(newSavedCards);
+            setCards(newCards);
+            localStorage.setItem('searchResults', JSON.stringify(newCards));
+            localStorage.setItem('savedCards', JSON.stringify(newSavedCards));
+          })
+          .catch((err) => console.log(err));
       } else {
         handleDeleteClick(card);
       }
@@ -217,7 +223,7 @@ function App() {
           localStorage.setItem('jwt', data.token);
           setCurrentUser({
             email: data.email,
-            name: data.username
+            name: data.username,
           });
           setloggedin(true);
         }
@@ -342,13 +348,14 @@ function App() {
             <About />
           </Route>
           <ProtectedRoute
-          exact path='/saved-news'
-          loggedin={loggedin}
-          savedNewsLocation={savedNewsLocation}
-          cards={savedCards}
-          numCardsShown={numCardsShown}
-          bookmarkArticleClick={bookmarkArticleClick}
-          component={SavedNews}
+            exact
+            path='/saved-news'
+            loggedin={loggedin}
+            savedNewsLocation={savedNewsLocation}
+            cards={savedCards}
+            numCardsShown={numCardsShown}
+            bookmarkArticleClick={bookmarkArticleClick}
+            component={SavedNews}
           />
 
           {/* <Route exact path='/saved-news'>
