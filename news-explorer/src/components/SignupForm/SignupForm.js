@@ -9,6 +9,7 @@ function SignupForm({
   errors,
   resetForm,
   handleSignupSubmit,
+  sameUserError,
 }) {
   return (
     <form
@@ -18,7 +19,12 @@ function SignupForm({
       noValidate
       action='#'
     >
-      <h3 className='signup-form__title'>Sign up</h3>
+      <h3 className='signup-form__title'>
+        Sign up
+        <span className='signup-form__input-error'>
+          {sameUserError && 'Email is already taken'}
+        </span>
+      </h3>
       <label className='signup-form__label' htmlFor='signup-form__email'>
         Email
       </label>

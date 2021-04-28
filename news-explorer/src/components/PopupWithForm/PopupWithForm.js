@@ -18,6 +18,8 @@ function PopupWithForm({
   handleSignupSubmit,
   isSignupSuccessOpen,
   isMobileNavOpen,
+  sameUserError,
+  wrongEmailOrPasswordError,
 }) {
   useEffect(() => {
     document.addEventListener('keydown', escapeClose);
@@ -52,6 +54,7 @@ function PopupWithForm({
               errors={errors}
               resetForm={resetForm}
               handleSignupSubmit={handleSignupSubmit}
+              sameUserError={sameUserError}
             />
           </>
         )}
@@ -69,6 +72,7 @@ function PopupWithForm({
               isValid={isValid}
               errors={errors}
               resetForm={resetForm}
+              wrongEmailOrPasswordError={wrongEmailOrPasswordError}
             />
           </>
         )}

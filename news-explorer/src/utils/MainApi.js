@@ -8,9 +8,7 @@ export const register = (email, password, name) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password, name }),
-  }).then(res =>
-    res.ok ? res.json() : Promise.reject(`Error! ${res.statusText}`),
-  );
+  });
 };
 
 export const authorize = (email, password) => {
@@ -21,28 +19,23 @@ export const authorize = (email, password) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password }),
-  })
-    .then(res => (res.ok ? res.json() : Promise.reject(`Error! ${res.statusText}`)))
-    .then(data => {
-      if (data.token) {
-        return data;
-      }
-      return;
-    });
+  });
 };
 
-export const getUserInfo = token => {
+export const getUserInfo = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
   })
-    .then(res => (res.ok ? res.json() : Promise.reject(`Error! ${res.statusText}`)))
-    .then(data => data.data);
+    .then((res) =>
+      res.ok ? res.json() : Promise.reject(`Error! ${res.statusText}`),
+    )
+    .then((data) => data.data);
 };
 
-export const getArticles = token => {
+export const getArticles = (token) => {
   return fetch(`${BASE_URL}/articles`, {
     method: 'GET',
     headers: {
@@ -50,7 +43,7 @@ export const getArticles = token => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-  }).then(res => res.json());
+  }).then((res) => res.json());
 };
 
 export const bookmarkCard = (
@@ -74,10 +67,10 @@ export const bookmarkCard = (
       image,
     }),
   })
-    .then(res =>
+    .then((res) =>
       res.ok ? res.json() : Promise.reject(`Error! ${res.statusText}`),
     )
-    .then(data => data.data);
+    .then((data) => data.data);
 };
 
 export const deleteBookmarkCard = (cardId, token) => {

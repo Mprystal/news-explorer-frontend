@@ -26,11 +26,10 @@ import {
   getArticles,
 } from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-const notFoundUrlImage =
-  'https://webhostingmedia.net/wp-content/uploads/2018/01/http-error-404-not-found.png';
+import notFoundImage from '../../images/noImageFound.svg';
 
 function App() {
-  const [loggedin, setloggedin] = useState(false);
+  const [loggedin, setLoggedin] = useState(false);
   const [cards, setCards] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
   const [isSigninPopupOpen, setIsSigninPopupOpen] = useState(false);
@@ -44,6 +43,10 @@ function App() {
   const [searchRequest, setSearchRequest] = useState('');
   const [numCardsShown, setNumCardsShown] = useState(3);
   const [savedCards, setSavedCards] = useState([]);
+  const [sameUserError, setSameUserError] = useState(false);
+  const [wrongEmailOrPasswordError, setWrongEmailOrPasswordError] = useState(
+    false,
+  );
   const [isSignupSuccessOpen, setIsSignupSuccessOpen] = useState(false);
   const [values, setValues] = useState({
     username: '',
@@ -66,7 +69,7 @@ function App() {
       getUserInfo(token)
         .then((data) => {
           if (data) {
-            setloggedin(true);
+            setLoggedin(true);
             setCurrentUser({
               email: data.email,
               name: data.name,
@@ -75,7 +78,7 @@ function App() {
         })
         .catch((err) => console.log(err));
     } else {
-      setloggedin(false);
+      setLoggedin(false);
     }
   }, [token]);
 
@@ -127,8 +130,9 @@ function App() {
           setNotFound(true);
         }
         data.forEach((article) => {
+          console.log(article.image);
           if (!article.image || article.image.length === 0) {
-            article.image = notFoundUrlImage;
+            article.image = notFoundImage;
           }
           article.keyword =
             searchRequest[0].toUpperCase() +
@@ -153,7 +157,7 @@ function App() {
       })
       .catch((err) => {
         setIsServerError(true);
-        console.log(err);
+        console.log(err, 'error');
       })
       .finally(() => setIsLoading(false));
   }
@@ -204,12 +208,23 @@ function App() {
 
   function handleSignupSubmit(e) {
     e.preventDefault();
-    resetForm();
     register(values.email, values.password, values.username)
+      .then((res) => {
+        if (res.status === 409) {
+          setSameUserError(true);
+          return Promise.reject(`Error! ${res.statusText}`);
+        }
+        if (res.ok) {
+          return res.json();
+        }
+        Promise.reject(`Error! ${res.statusText}`);
+      })
       .then(() => {
+        setSameUserError(false);
         setIsSignupSuccessOpen(true);
         setIsSigninPopupOpen(false);
         setIsSignupPopupOpen(false);
+        resetForm();
       })
       .catch((err) => console.log(err));
   }
@@ -217,6 +232,23 @@ function App() {
   function handleLoginSubmit(e) {
     e.preventDefault();
     authorize(values.email, values.password)
+      .then((res) => {
+        if (res.status === 401) {
+          setWrongEmailOrPasswordError(true);
+          return Promise.reject(`Error! ${res.statusText}`);
+        }
+        if (res.ok) {
+          return res.json();
+        }
+        Promise.reject(`Error! ${res.statusText}`);
+      })
+      .then((data) => {
+        setWrongEmailOrPasswordError(false);
+        if (data.token) {
+          return data;
+        }
+        return;
+      })
       .then((data) => {
         if (data && data.token) {
           setToken(data.token);
@@ -225,7 +257,7 @@ function App() {
             email: data.email,
             name: data.username,
           });
-          setloggedin(true);
+          setLoggedin(true);
         }
       })
       .then(() => {
@@ -242,7 +274,7 @@ function App() {
       c.isSaved = false;
     });
     setCards(newCards);
-    setloggedin(false);
+    setLoggedin(false);
     history.push('/');
   }
 
@@ -262,9 +294,11 @@ function App() {
     if (isSigninPopupOpen) {
       setIsSignupPopupOpen(true);
       setIsSigninPopupOpen(false);
+      setSameUserError(false);
     } else if (isSignupPopupOpen) {
       setIsSigninPopupOpen(true);
       setIsSignupPopupOpen(false);
+      setWrongEmailOrPasswordError(false);
     } else if (isSignupSuccessOpen) {
       setIsSignupSuccessOpen(false);
       setIsSigninPopupOpen(true);
@@ -357,16 +391,6 @@ function App() {
             bookmarkArticleClick={bookmarkArticleClick}
             component={SavedNews}
           />
-
-          {/* <Route exact path='/saved-news'>
-            <SavedNews
-              loggedin={loggedin}
-              savedNewsLocation={savedNewsLocation}
-              cards={savedCards}
-              numCardsShown={numCardsShown}
-              bookmarkArticleClick={bookmarkArticleClick}
-            />
-          </Route> */}
           <Route path='*'>
             <Redirect to='./' />
           </Route>
@@ -386,6 +410,8 @@ function App() {
           handleSignupSubmit={handleSignupSubmit}
           isSignupSuccessOpen={isSignupSuccessOpen}
           isMobileNavOpen={isMobileNavOpen}
+          sameUserError={sameUserError}
+          wrongEmailOrPasswordError={wrongEmailOrPasswordError}
         />
       </div>
     </CurrentUserContext.Provider>
