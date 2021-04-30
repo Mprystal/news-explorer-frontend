@@ -84,6 +84,8 @@
 }
 
 .newscard__img {
+  width: 400px;
+  object-fit: cover;
   height: 272px;
 }
 
@@ -164,6 +166,7 @@
   }
 
   .newscard__img {
+    width: 224px;
     height: 150px;
   }
 
@@ -209,6 +212,7 @@
   }
 
   .newscard__img {
+    width: 288px;
     height: 196px;
   }
 

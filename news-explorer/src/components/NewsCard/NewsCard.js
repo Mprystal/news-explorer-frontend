@@ -19,6 +19,7 @@ function NewsCard({ card, loggedin, savedNewsLocation, bookmarkArticleClick }) {
           onMouseEnter={() => setShowReminderDiv(true)}
           onMouseLeave={() => setShowReminderDiv(false)}
           onClick={() => bookmarkArticleClick(card)}
+          aria-label={savedNewsLocation ? 'Remove article' : 'Save article'}
         >
           {savedNewsLocation ? <Trash /> : <Bookmark />}
         </button>

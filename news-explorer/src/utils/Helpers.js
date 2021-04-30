@@ -13,6 +13,19 @@ const months = [
   'December',
 ];
 
+export function sameArticleKeyCheck(article, savedCard) {
+  const articleKeys = [
+    'keyword',
+    'date',
+    'image',
+    'link',
+    'source',
+    'text',
+    'title',
+  ];
+  return articleKeys.every((key) => article[key] === savedCard[key]);
+}
+
 export function convertDate(cardDate) {
   const [year, month] = cardDate.split('-');
   const [day] = cardDate.split('-')[2].split('T');

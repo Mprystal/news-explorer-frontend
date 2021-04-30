@@ -54,6 +54,7 @@ function Header({
             isNewsPage && 'header__button-mobile_black'
           }`}
           onClick={handleMobileNav}
+          aria-label='Open menu'
         >
           <MenuMobile />
         </button>

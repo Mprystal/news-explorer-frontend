@@ -27,6 +27,7 @@ import {
 } from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import notFoundImage from '../../images/noImageFound.svg';
+import { sameArticleKeyCheck } from '../../utils/Helpers';
 
 function App() {
   const [loggedin, setLoggedin] = useState(false);
@@ -102,19 +103,6 @@ function App() {
     }
   }, [loggedin, token]);
 
-  function sameArticleKeyCheck(article, savedCard) {
-    const articleKeys = [
-      'keyword',
-      'date',
-      'image',
-      'link',
-      'source',
-      'text',
-      'title',
-    ];
-    return articleKeys.every((key) => article[key] === savedCard[key]);
-  }
-
   function handleSearchFormSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
@@ -130,7 +118,6 @@ function App() {
           setNotFound(true);
         }
         data.forEach((article) => {
-          console.log(article.image);
           if (!article.image || article.image.length === 0) {
             article.image = notFoundImage;
           }
@@ -268,12 +255,20 @@ function App() {
   }
 
   function handleLogoutClick() {
-    localStorage.clear();
+    markCardsUnsaved();
+    logoutUser();
+  }
+
+  function markCardsUnsaved() {
     const newCards = cards;
     newCards.forEach((c) => {
       c.isSaved = false;
     });
     setCards(newCards);
+  }
+
+  function logoutUser() {
+    localStorage.clear();
     setLoggedin(false);
     history.push('/');
   }
