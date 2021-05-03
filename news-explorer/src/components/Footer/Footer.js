@@ -37,7 +37,7 @@ function Footer() {
             target='_blank'
             rel='noreferrer'
             className='footer__social'
-            href='https://www.facebook.com/'
+            href='https://www.linkedin.com/in/michaelprystal/'
           >
             <img src={linkedin} alt='linkedin account' />
           </a>
