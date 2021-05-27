@@ -1,10 +1,8 @@
-import React from 'react';
 import './Header.css';
 import Navigation from '../Navigation/Navigation';
-import DropDownMenu from '../../images/menumobileMenuV.svg';
-import DropDownMenuBlack from '../../images/menumobileMenuBlackV.svg';
 import CloseButton from '../CloseButton/CloseButton';
 import SignInButton from '../SignInButton/SignInButton';
+import { ReactComponent as MenuMobile } from '../../images/menumobileMenuV.svg';
 
 function Header({
   handleSigninPopupClick,
@@ -51,11 +49,14 @@ function Header({
           closeAllPopups={closeAllPopups}
         />
       ) : (
-        <button className='header__button-mobile' onClick={handleMobileNav}>
-          <img
-            src={isNewsPage ? DropDownMenuBlack : DropDownMenu}
-            alt='Click to open nav'
-          />
+        <button
+          className={`header__button-mobile ${
+            isNewsPage && 'header__button-mobile_black'
+          }`}
+          onClick={handleMobileNav}
+          aria-label='Open menu'
+        >
+          <MenuMobile />
         </button>
       )}
     </header>

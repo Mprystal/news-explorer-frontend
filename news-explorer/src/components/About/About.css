@@ -14,6 +14,9 @@
   height: 32.2vw;
   max-width: 464px;
   max-height: 464px;
+  border-radius: 100px;
+  object-fit: cover;
+  object-position: 0 -43px;
 }
 
 .about__container {

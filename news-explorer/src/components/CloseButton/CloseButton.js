@@ -1,5 +1,6 @@
 import React from 'react';
 import './CloseButton.css';
+import { ReactComponent as Close } from '../../images/close.svg';
 
 function CloseButton({ closeAllPopups, isMobileNavOpen }) {
   return (
@@ -8,7 +9,7 @@ function CloseButton({ closeAllPopups, isMobileNavOpen }) {
       className={`close-button ${isMobileNavOpen && 'close-button_mobile'}`}
       onClick={closeAllPopups}
     >
-      <img className='close-button__img' alt='close' />
+      <Close />
     </button>
   );
 }

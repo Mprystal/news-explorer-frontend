@@ -28,9 +28,13 @@
   margin: 0 17px;
 }
 
-.signin-button__img {
-  margin-left: 19px;
+.signin-button__container_black path {
+  fill: black;
 }
+
+/* .signin-button__container:last-child {
+  margin-left: 19px;
+} */
 
 @media screen and (max-width: 1024px) {
   .signin-button {

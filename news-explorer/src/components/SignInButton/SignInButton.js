@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './SignInButton.css';
-import LogoutIcon from '../../images/logoutlogoutWhiteV.svg';
-import LogoutIconBlack from '../../images/logoutlogoutBlackV.svg';
+import { ReactComponent as LogoutIcon } from '../../images/logoutlogoutWhiteV.svg';
+
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function SignInButton({
   loggedin,
@@ -13,6 +14,8 @@ function SignInButton({
   const mobileButtonChange = isMobileNavOpen
     ? 'signin-button_mobile'
     : 'signin-button';
+
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <>
@@ -30,13 +33,13 @@ function SignInButton({
             borderColor: isNewsPage ? 'black' : null,
           }}
         >
-          <div className='signin-button__container'>
-            Name{' '}
-            <img
-              className='signin-button__img'
-              src={isNewsPage ? LogoutIconBlack : LogoutIcon}
-              alt='Logout'
-            />
+          <div
+            className={`signin-button__container ${
+              isNewsPage && 'signin-button__container_black'
+            }`}
+          >
+            {currentUser && currentUser.name}
+            <LogoutIcon style={{ marginLeft: '17px' }} />
           </div>
         </button>
       )}

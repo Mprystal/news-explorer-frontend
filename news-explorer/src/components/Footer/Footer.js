@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
 import git from '../../images/Vectorgit.svg';
-import facebook from '../../images/Vectorfacebook.svg';
+import linkedin from '../../images/LinkedInLogo.svg';
 
 function Footer() {
   return (
@@ -37,9 +37,9 @@ function Footer() {
             target='_blank'
             rel='noreferrer'
             className='footer__social'
-            href='https://www.facebook.com/'
+            href='https://www.linkedin.com/in/michaelprystal/'
           >
-            <img src={facebook} alt='facebook account' />
+            <img src={linkedin} alt='linkedin account' />
           </a>
         </div>
       </div>

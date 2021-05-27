@@ -17,6 +17,9 @@ function PopupWithForm({
   resetForm,
   handleSignupSubmit,
   isSignupSuccessOpen,
+  isMobileNavOpen,
+  sameUserError,
+  wrongEmailOrPasswordError,
 }) {
   useEffect(() => {
     document.addEventListener('keydown', escapeClose);
@@ -39,7 +42,10 @@ function PopupWithForm({
       <div className='popup__container'>
         {isSignupPopupOpen && (
           <>
-            <CloseButton closeAllPopups={closeAllPopups} />
+            <CloseButton
+              closeAllPopups={closeAllPopups}
+              isMobileNavOpen={isMobileNavOpen}
+            />
             <SignupForm
               handleFormSwitchClick={handleFormSwitchClick}
               handleFormChange={handleFormChange}
@@ -48,12 +54,16 @@ function PopupWithForm({
               errors={errors}
               resetForm={resetForm}
               handleSignupSubmit={handleSignupSubmit}
+              sameUserError={sameUserError}
             />
           </>
         )}
         {isSigninPopupOpen && (
           <>
-            <CloseButton closeAllPopups={closeAllPopups} />
+            <CloseButton
+              closeAllPopups={closeAllPopups}
+              isMobileNavOpen={isMobileNavOpen}
+            />
             <SigninForm
               handleFormSwitchClick={handleFormSwitchClick}
               handleLoginSubmit={handleLoginSubmit}
@@ -62,12 +72,16 @@ function PopupWithForm({
               isValid={isValid}
               errors={errors}
               resetForm={resetForm}
+              wrongEmailOrPasswordError={wrongEmailOrPasswordError}
             />
           </>
         )}
         {isSignupSuccessOpen && (
           <>
-            <CloseButton closeAllPopups={closeAllPopups} />
+            <CloseButton
+              closeAllPopups={closeAllPopups}
+              isMobileNavOpen={isMobileNavOpen}
+            />
             <div className='popup__success-container'>
               <h3 className='popup__success-title'>
                 Registration successfully completed!{' '}

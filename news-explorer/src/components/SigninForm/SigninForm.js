@@ -9,6 +9,7 @@ function SigninForm({
   isValid,
   errors,
   resetForm,
+  wrongEmailOrPasswordError,
 }) {
   return (
     <form
@@ -18,7 +19,12 @@ function SigninForm({
       action='#'
       onReset={resetForm}
     >
-      <h3 className='signin-form__title'>Sign in</h3>
+      <h3 className='signin-form__title'>
+        Sign in{' '}
+        <span className='signup-form__input-error'>
+          {wrongEmailOrPasswordError && 'Email or password invalid'}
+        </span>
+      </h3>
       <label className='signin-form__label' htmlFor='signin-form__email'>
         Email
       </label>
@@ -64,6 +70,7 @@ function SigninForm({
         Sign in
       </button>
       <button
+        type='button'
         className='signin-form__button-signup'
         onClick={handleFormSwitchClick}
       >

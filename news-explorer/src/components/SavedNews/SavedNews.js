@@ -3,14 +3,23 @@ import './SavedNews.css';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import NewsCardList from '../NewsCardList/NewsCardList';
 
-function SavedNews({ loggedin, savedNewsLocation }) {
+function SavedNews({
+  loggedin,
+  savedNewsLocation,
+  cards,
+  numCardsShown,
+  bookmarkArticleClick,
+}) {
   return (
     <main className='savednews'>
-      <SavedNewsHeader />
+      <SavedNewsHeader cards={cards} />
       <section className='savednews__results'>
         <NewsCardList
           loggedin={loggedin}
           savedNewsLocation={savedNewsLocation}
+          cards={cards}
+          numCardsShown={numCardsShown}
+          bookmarkArticleClick={bookmarkArticleClick}
         />
       </section>
     </main>
